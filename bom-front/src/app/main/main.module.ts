@@ -3,6 +3,7 @@ import { HomeModule } from './home/home.module';
 import { AccountManagerModule } from './account-manager/account-manager.module';
 import { ProduitModule } from './produit/produit.module';
 import { JournalModule } from './journal/journal.module';
+import { AboutModule } from './about/about.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { JournalModule } from './journal/journal.module';
     HomeModule,
     AccountManagerModule,
     ProduitModule,
-    JournalModule
+    JournalModule,
+    AboutModule
   ]
 })
 export class MainModule { }
