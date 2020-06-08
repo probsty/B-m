@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProduitComponent } from './produit.component';
+import { JournalComponent } from './journal.component';
 import { RouterModule } from '@angular/router';
 
 const routes = [
     {
-      path: 'produit/:id',
-      component: ProduitComponent,
+      path: 'journal',
+      component: JournalComponent,
     //   data: { isRegistration: false }
     }
   ];
 
 @NgModule({
-  declarations: [ProduitComponent],
+  declarations: [JournalComponent],
   imports: [
     CommonModule,
-
     RouterModule.forChild(routes)
   ]
 })
-export class ProduitModule { }
+export class JournalModule { }
