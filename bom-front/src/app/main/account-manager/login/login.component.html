@@ -1,36 +1,21 @@
 <p>login works!</p>
 
-<form name="resetPasswordForm" [formGroup]="resetPasswordForm" novalidate (ngSubmit)="onSubmit()">
+<form name="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
 
-    <mat-form-field appearance="legacy">
-        <mat-label>Legacy form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
+    <mat-form-field appearance="outline">
+        <mat-label>{{'LOGIN.NAME'}}</mat-label>
+        <input matInput type="text" formControlName="username">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>{{'RESET_PASSWORD.PASSWORD'}}</mat-label>
+        <mat-label>{{'LOGIN.PASSWORD'}}</mat-label>
         <input matInput type="password" formControlName="password">
         <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-
+       
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>{{'RESET_PASSWORD.PASSWORD_CONFIRM'}}</mat-label>
-        <input matInput type="password" formControlName="passwordConfirm">
-        <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-        <mat-error *ngIf="resetPasswordForm.get('passwordConfirm').hasError('required')">
-            {{'RESET_PASSWORD.PASSWORD_CONFIRM_REQUIRED'}}
-        </mat-error>
-        <mat-error *ngIf="!resetPasswordForm.get('passwordConfirm').hasError('required') &&
-                           resetPasswordForm.get('passwordConfirm').hasError('passwordsNotMatching')">
-            {{'RESET_PASSWORD.PASSWORDS_MISMATCHED'}}
-        </mat-error>
-    </mat-form-field>
-
-    <button mat-raised-button class="submit-button" color="accent" [disabled]="resetPasswordForm.invalid"
+    <button mat-raised-button class="submit-button" color="accent" [disabled]="loginForm.invalid"
         style="white-space: pre-wrap !important;">
-        {{'RESET_PASSWORD.RESET'}}
+        Valider
     </button>
 </form>

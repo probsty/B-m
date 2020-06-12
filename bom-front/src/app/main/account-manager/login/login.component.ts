@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  resetPasswordForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.resetPasswordForm = this._formBuilder.group({
-      password: ['', Validators.required],
-      passwordConfirm: ['', [Validators.required]],
+    this.loginForm = this._formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required]],
     });
   }
 
