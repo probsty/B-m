@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemoignageComponent } from './temoignage.component';
 import { RouterModule } from '@angular/router';
+import { IsLoggedInGuard } from 'src/app/guards/is-logged-in.guard';
 
 const routes = [
     {
       path: 'temoignage',
-      component: TemoignageComponent,
+      canActivate : [IsLoggedInGuard],
+      component: TemoignageComponent
     }
   ];
 
