@@ -5,6 +5,7 @@ import { ProduitModule } from './produit/produit.module';
 import { JournalModule } from './journal/journal.module';
 import { AboutModule } from './about/about.module';
 import { TemoignageModule } from './temoignage/temoignage.module';
+import { BackOfficeModule } from './back-office/back-office.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { TemoignageModule } from './temoignage/temoignage.module';
     ProduitModule,
     JournalModule,
     AboutModule,
-    TemoignageModule
+    TemoignageModule,
+    BackOfficeModule
   ]
 })
 export class MainModule { }
