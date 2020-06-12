@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InscriptionConnexionComponent } from './inscription-connexion/inscription-connexion.component';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent} from "./register";
+import { LoginComponent } from "./login";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const routes = [
     {
       path: 'connexion',
-      component: InscriptionConnexionComponent,
+      component: LoginComponent,
       data: { isRegistration: false }
     },
     {
         path: 'inscription',
-        component: InscriptionConnexionComponent,
+        component: RegisterComponent,
         data: { isRegistration: true }
     },
     {
@@ -22,12 +25,12 @@ const routes = [
   ];
 
 @NgModule({
-  declarations: [InscriptionConnexionComponent, ProfileComponent],
+  declarations: [ProfileComponent],
   imports: [
     CommonModule,
-
     RouterModule.forChild(routes),
-
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountManagerModule { }
