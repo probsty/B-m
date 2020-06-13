@@ -8,25 +8,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  m_loginForm: FormGroup;
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private _route: ActivatedRoute,
-    private _router: Router
+    private m_formBuilder: FormBuilder,
+    private m_route: ActivatedRoute,
+    private m_router: Router
   ) {}
 
+  /*
+  * Initiation of the component
+   */
   ngOnInit() {
-    this.loginForm = this._formBuilder.group({
-      username: ['', Validators.required],
+    this.m_loginForm = this.m_formBuilder.group({
+      email: ['', Validators.required],
       password: ['', [Validators.required]],
     });
   }
 
+  /*
+  * Submit the forms
+   */
   onSubmit(): void {
     console.log('On submit');
   }
 
-  // convenience getter for easy access to form fields
-  //   get f() { return this.loginForm.controls; }
+  /*
+  * Get email content in my register.component.html file
+   */
+  get email() {
+    return this.m_loginForm.get('email');
+  }
+
+  /*
+  * Get password content in my register.component.html file
+   */
+  get password() {
+    return this.m_loginForm.get('password');
+  }
+
 }
