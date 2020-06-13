@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RegisterComponent } from './register/register.component';
 
 const routes = [
   {
@@ -19,7 +19,7 @@ const routes = [
   {
     path: 'inscription',
     component: RegisterComponent,
-    data: { isRegistration: true },
+    data: { isRegistration: false },
   },
   {
     path: 'profile',
@@ -28,7 +28,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, LoginComponent],
+  declarations: [ProfileComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -37,7 +37,7 @@ const routes = [
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
 })
 export class AccountManagerModule {}
