@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { QuiSommesNousComponent } from './qui-sommes-nous/qui-sommes-nous.component';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes = [
     {
@@ -19,7 +24,13 @@ const routes = [
   declarations: [QuiSommesNousComponent, ContactComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    MatCardModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ]
 })
 export class AboutModule { }

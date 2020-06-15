@@ -1,1 +1,44 @@
-<p>contact works!</p>
+<div>
+  <div class="split-left">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Ecrivez-nous</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form name="contactForm" [formGroup]="m_contactForm" novalidate (ngSubmit)="onSubmit()">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Prénom...</mat-label>
+            <input matInput type="text" formControlName="name" required>
+            <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+              Quel est votre prénom?
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Adresse e-mail...</mat-label>
+            <input matInput type="email" formControlName="email" email="true" required>
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+              L'adresse e-mail est invalide.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Donnez-nous des détails</mat-label>
+            <textarea formControlName="message" matInput></textarea>
+          </mat-form-field>
+
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="submit-button" color="primary" [disabled]="m_contactForm.invalid"
+                style="white-space: pre-wrap !important;">
+          Envoyer
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="split-right">
+    <img class="contact-img" src="../../../../assets/contactLogo.png" alt="contact">
+  </div>
+</div>
