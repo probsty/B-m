@@ -6,12 +6,13 @@ import { JournalModule } from './journal/journal.module';
 import { AboutModule } from './about/about.module';
 import { TemoignageModule } from './temoignage/temoignage.module';
 import { BackOfficeModule } from './back-office/back-office.module';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [],
   imports: [
     // CommonModule,
+    FlexLayoutModule,
     HomeModule,
     AccountManagerModule,
     ProduitModule,
