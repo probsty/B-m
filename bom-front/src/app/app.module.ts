@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CarouselComponent } from './global/carousel/carousel.component';
+import { GlobalModule } from './global/global.module';
 
 @NgModule({
   declarations: [AppComponent, MainNavComponent],
@@ -29,6 +31,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    GlobalModule
   ],
   providers: [],
   bootstrap: [AppComponent],

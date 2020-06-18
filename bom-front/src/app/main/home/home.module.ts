@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GlobalModule } from 'src/app/global/global.module';
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FlexLayoutModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FlexLayoutModule,
+    GlobalModule,
+  ],
 })
 export class HomeModule {}
