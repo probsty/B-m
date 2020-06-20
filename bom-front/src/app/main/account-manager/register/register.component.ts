@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
         if (user) {
           console.log('User ', user);
           this._router.navigate(['/']).then(() => {
-            // TODO: Need to find another solution to update navigation
+            // TODO: Need to find another solution to update navigatio
             location.reload();
           });
         } else {
