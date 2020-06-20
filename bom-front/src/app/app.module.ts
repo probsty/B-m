@@ -17,7 +17,9 @@ import { CarouselComponent } from './global/carousel/carousel.component';
 import { GlobalModule } from './global/global.module';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatCardModule } from '@angular/material/card';
-
+import { httpInterceptorProviders } from './http-interceptors';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, MainNavComponent],
@@ -36,9 +38,10 @@ import { MatCardModule } from '@angular/material/card';
     FlexLayoutModule,
     GlobalModule,
     SlickCarouselModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule,
   ],
-  providers: [],
+  //   providers: [IsLoggedInGuard, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

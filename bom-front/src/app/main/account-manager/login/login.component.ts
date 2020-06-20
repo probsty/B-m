@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,43 +9,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  m_loginForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
-    private m_formBuilder: FormBuilder,
-    private m_route: ActivatedRoute,
-    private m_router: Router
+    private _authService: AuthService,
+    private _formBuilder: FormBuilder,
+    private _router: Router
   ) {}
 
   /*
-  * Initiation of the component
+   * Initiation of the component
    */
   ngOnInit() {
-    this.m_loginForm = this.m_formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       email: ['', Validators.required],
       password: ['', [Validators.required]],
     });
   }
 
   /*
-  * Submit the forms
+   * Submit the forms
    */
-  onSubmit(): void {
-    console.log('On submit');
+  onLogin(): void {
+    this._authService
+      .login(
+        this.loginForm.get('email').value,
+        this.loginForm.get('password').value
+      )
+      .subscribe(
+        (user) => {
+          if (user) {
+            console.log('User ', user);
+            this._router.navigate(['/']).then(() => {
+              // TODO: Need to find another solution to update navigation
+              location.reload();
+            });
+          } else {
+            console.error('An error occured while connecting to server');
+          }
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
   }
-
-  /*
-  * Get email content in my register.component.html file
-   */
-  get email() {
-    return this.m_loginForm.get('email');
-  }
-
-  /*
-  * Get password content in my register.component.html file
-   */
-  get password() {
-    return this.m_loginForm.get('password');
-  }
-
 }
