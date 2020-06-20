@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GlobalModule } from 'src/app/global/global.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatCardModule } from '@angular/material/card';
 
 const routes = [
   {
@@ -20,6 +22,8 @@ const routes = [
     RouterModule.forChild(routes),
     FlexLayoutModule,
     GlobalModule,
+    SlickCarouselModule,
+    MatCardModule
   ],
 })
 export class HomeModule {}

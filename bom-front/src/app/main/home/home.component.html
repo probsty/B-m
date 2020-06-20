@@ -11,4 +11,31 @@
     </div>
     <div>test</div>
     <app-carousel></app-carousel>
+
+    <div class="container">
+        <ng-container>
+            <ngx-slick-carousel class="carousel" [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let product of productData; let i=index">
+                    <app-product-card [product]="product" [currency]="currency" [index]="i">
+                    </app-product-card>
+                    <!-- data {{product.name}} -->
+                    <!-- <embryo-ProductCard [product]="product" (addToCart)="addToCart($event)"
+                        [currency]="embryoService.currency" (addToWishlist)="addToWishlist($event)" [index]="i">
+                    </embryo-ProductCard> -->
+                </div>
+            </ngx-slick-carousel>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="onNewArrivalsSelectedTab(embryoService.newArrivalSelectedTab)">
+            
+        </ng-container> -->
+        <!-- <ngx-slick-carousel *ngIf="!embryoService.isDirectionRtl" class="carousel" [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let product of newProductsSliderData; let i=index">
+                        <embryo-ProductCard [product]="product" (addToCart)="addToCart($event)"
+                            [currency]="embryoService.currency" (addToWishlist)="addToWishlist($event)" [index]="i">
+                        </embryo-ProductCard>
+                    </div>
+                </ngx-slick-carousel> -->
+    </div>
+
 </div>

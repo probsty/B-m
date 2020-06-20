@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselComponent } from './global/carousel/carousel.component';
 import { GlobalModule } from './global/global.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [AppComponent, MainNavComponent],
@@ -31,7 +34,9 @@ import { GlobalModule } from './global/global.module';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    GlobalModule
+    GlobalModule,
+    SlickCarouselModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
