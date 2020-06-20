@@ -13,8 +13,8 @@ export class AuthService {
     private _globalService: GlobalService
   ) {}
 
-  createUser(user: object): Observable<any> {
-    return this._http.post(this._globalService.urlApi + '/auth/local', user);
+  createUser(data: object): Observable<any> {
+    return this._http.post(this._globalService.urlApi + '/auth/local', data);
   }
 
   login(username: string, password: string): Observable<any> {
