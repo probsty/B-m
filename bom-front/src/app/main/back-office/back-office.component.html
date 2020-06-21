@@ -1,1 +1,127 @@
 <p>back-office works!</p>
+
+<div>
+    <ngx-datatable class="material fullscreen" [rows]="rowsData" [columnMode]="'force'" [scrollbarV]="true"
+        [headerHeight]="78" [footerHeight]="0" [selectionType]="'single'" [rowHeight]="50"
+        [sorts]="[{prop: 'nom', dir: 'asc'}]" (select)="detailUser($event)" [scrollbarH]="true"
+        [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" prop="intitule" name="" [width]="90">
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.LASTNAME'"
+            [resizeable]="false" prop="nom">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.FIRSTNAME'"
+            [resizeable]="false" [width]="150" prop="prenom">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.EMAIL'"
+            [resizeable]="false" [width]="250" prop="mail">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="email" formControlName="email"
+                            (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.GROUPE'"
+            [resizeable]="false" [width]="100" prop="groupName">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.COMMERCIAUX'"
+            [resizeable]="false" [width]="100" prop="comList">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.COMPTABLE'"
+            [resizeable]="false" [width]="100" prop="compList">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                    <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                        <span class="datatable-header-cell-label draggable">
+                            {{ column.name }}
+                        </span>
+                    </span>
+                    <mat-form-field>
+                        <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                    </mat-form-field>
+                </div>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.EDIT'"
+            [resizeable]="false">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <button mat-icon-button (click)="onEditUser(row)" stopPropagation>
+                    <mat-icon color="accent">edit</mat-icon>
+                </button>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <!-- <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'USER.DELETE'"
+            [resizeable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+                <button mat-icon-button (click)="dialogDelete(row)" stopPropagation>
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+    </ngx-datatable>
+</div>
