@@ -20,9 +20,11 @@ import { MatCardModule } from '@angular/material/card';
 import { httpInterceptorProviders } from './http-interceptors';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmDeleteDialogComponent } from './global/comfirm-delete-dialog/confirm-delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, MainNavComponent],
+  declarations: [AppComponent, MainNavComponent, ConfirmDeleteDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,8 +42,12 @@ import { HttpClientModule } from '@angular/common/http';
     SlickCarouselModule,
     MatCardModule,
     HttpClientModule,
+    MatDialogModule
+
   ],
-  //   providers: [IsLoggedInGuard, httpInterceptorProviders],
+    // providers: [IsLoggedInGuard, httpInterceptorProviders],
   bootstrap: [AppComponent],
+  entryComponents: [ ConfirmDeleteDialogComponent],
+
 })
 export class AppModule {}
