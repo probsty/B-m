@@ -4,13 +4,12 @@
     <!-- (select)="detailUser($event)" -->
     <ngx-datatable class="material fullscreen" [rows]="rowsData" [columnMode]="'force'" [scrollbarV]="true"
         [headerHeight]="78" [footerHeight]="0" [selectionType]="'single'" [rowHeight]="50"
-        [sorts]="[{prop: 'nom', dir: 'asc'}]"  [scrollbarH]="true"
-        [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+        [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true" [messages]="{emptyMessage: 'Aucun utilisateurs'}">
         <ngx-datatable-column [draggable]="false" [resizeable]="false" prop="intitule" name="" [width]="90">
         </ngx-datatable-column>
 
-        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Nom de famille'"
-            [resizeable]="false" prop="nom">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Nom de famille'" [resizeable]="false"
+            prop="nom">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
                     <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
@@ -25,8 +24,8 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Prénom'"
-            [resizeable]="false" [width]="150" prop="prenom">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Prénom'" [resizeable]="false"
+            [width]="150" prop="prenom">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
                     <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
@@ -41,8 +40,8 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Adresse email'"
-            [resizeable]="false" [width]="250" prop="email">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Adresse email'" [resizeable]="false"
+            [width]="250" prop="email">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
                     <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
@@ -59,17 +58,16 @@
         </ngx-datatable-column>
 
 
-        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Editer'"
-            [resizeable]="false">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Administrateur'" [resizeable]="false" prop="admin">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <button mat-icon-button (click)="onEditUser(row)">
+                <!-- <button mat-icon-button (click)="onEditUser(row)">
                     <mat-icon color="accent">edit</mat-icon>
-                </button>
+                </button> -->
+                <mat-checkbox [checked]="row.admin" (click)="switchAdminRight(row, !row.admin)"></mat-checkbox>
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'"
-            [resizeable]="false">
+        <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'" [resizeable]="false">
             <ng-template ngx-datatable-cell-template let-row="row">
                 <button mat-icon-button (click)="dialogDelete(row)">
                     <mat-icon color="warn">delete</mat-icon>

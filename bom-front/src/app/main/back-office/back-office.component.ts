@@ -29,16 +29,19 @@ export class BackOfficeComponent implements OnInit {
         nom: 'MONOT',
         prenom: 'Guillaume',
         email: 'guillaume.monot@epitech.eu',
+        admin: true,
       },
       {
         nom: 'PROBST',
         prenom: 'Yann',
         email: 'yann.probst@epitech.eu',
+        admin: false,
       },
       {
         nom: 'DELANE',
         prenom: 'Julien',
         email: 'julien.delane@epitech.eu',
+        admin: false,
       },
     ];
     this.temp = this.rowsData;
@@ -46,11 +49,6 @@ export class BackOfficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshDataTable();
-  }
-
-  detailUser(event: any): void {
-    // this._router.navigate(['/']);
-    console.log('did click on', event.selected[0].nom);
   }
 
   updateFilter(event: any, prop: string): void {
@@ -72,10 +70,6 @@ export class BackOfficeComponent implements OnInit {
     });
   }
 
-  onEditUser(row: any): void {
-    console.log(row);
-  }
-
   dialogDelete(row: any): void {
     this.dialogDeleteRef = this._dialog.open(ConfirmDeleteDialogComponent, {
       disableClose: true,
@@ -88,8 +82,15 @@ export class BackOfficeComponent implements OnInit {
     });
   }
 
-  deleteUser(row: any): void {
+  switchAdminRight(row: any, isAdmin: boolean): void {
+    console.log(`${row.nom} is admin ${isAdmin}`);
+    // call service
     this.refreshDataTable();
+  }
+
+  deleteUser(row: any): void {
     console.log('Row deleted');
+    // call service
+    this.refreshDataTable();
   }
 }
