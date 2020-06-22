@@ -53,4 +53,18 @@ export class LoginComponent implements OnInit {
         }
       );
   }
+
+  /*
+* Get email content in my register.component.html file
+ */
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  /*
+  * Get password content in my register.component.html file
+   */
+  get password() {
+    return this.loginForm.get('password');
+  }
 }
