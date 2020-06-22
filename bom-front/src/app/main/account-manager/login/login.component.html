@@ -5,7 +5,7 @@
     <mat-card-content>
         <form name="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="onLogin()">
             <mat-form-field appearance="outline">
-                <mat-label>Adresse e-mail...</mat-label>
+                <mat-label>Adresse e-mail/Nom utilisateur...</mat-label>
                 <input class="test" matInput type="email" formControlName="email" email="true">
                 <!-- <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
           L'adresse e-mail est invalide.

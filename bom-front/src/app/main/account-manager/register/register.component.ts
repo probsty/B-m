@@ -80,4 +80,32 @@ export class RegisterComponent implements OnInit {
 
     return password === confirmPassword ? null : { notSame: true };
   }
+
+  /*
+  * Get username content in my register.component.html file
+   */
+  get username() {
+    return this.registerForm.get('username');
+  }
+
+  /*
+  * Get email content in my register.component.html file
+   */
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  /*
+  * Get password content in my register.component.html file
+   */
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  /*
+  * Get confirmPassword content in my register.component.html file
+   */
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
 }
