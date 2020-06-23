@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
     };
 
     this.dialog = this._dialog.open(DialogComponent, dialogConfig);
+    this.registerForm.reset();
 
     /*const data = {
       email: this.registerForm.get('email').value,
