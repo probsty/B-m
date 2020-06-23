@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AuthGoogleComponent } from './auth-google/auth-google.component';
 
 const routes = [
   {
@@ -30,7 +31,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, LoginComponent, RegisterComponent],
+  declarations: [ProfileComponent, LoginComponent, RegisterComponent, AuthGoogleComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
