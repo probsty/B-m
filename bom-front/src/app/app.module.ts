@@ -22,9 +22,10 @@ import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDeleteDialogComponent } from './global/comfirm-delete-dialog/confirm-delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from "./global/dialog/dialog.component";
 
 @NgModule({
-  declarations: [AppComponent, MainNavComponent, ConfirmDeleteDialogComponent],
+  declarations: [AppComponent, MainNavComponent, ConfirmDeleteDialogComponent, DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from './state-matcher.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DialogComponent } from 'src/app/global/dialog/dialog.component';
+import {MatDialogRef, MatDialog, MatDialogConfig} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +14,14 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public matcher = new MyErrorStateMatcher();
+  public dialog: MatDialogRef<DialogComponent>;
 
   constructor(
     private _authService: AuthService,
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog
   ) {}
 
   /*
@@ -27,8 +31,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this._formBuilder.group(
       {
         email: ['', [Validators.required]],
-        // Rajouter le validator
-        username: [''],
+        username: ['', [Validators.required]],
         password: ['', [Validators.required]],
         confirmPassword: [''],
       },
@@ -45,8 +48,18 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void {
     console.log('On register');
+    const dialogConfig = new MatDialogConfig();
 
-    const data = {
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: "Information création de compte",
+      description: "Veuillez confirmer votre email. Pensez à verifier vos spams :)"
+    };
+
+    this.dialog = this._dialog.open(DialogComponent, dialogConfig);
+
+    /*const data = {
       email: this.registerForm.get('email').value,
       username: this.registerForm.get('username').value,
       password: this.registerForm.get('password').value,
@@ -68,7 +81,7 @@ export class RegisterComponent implements OnInit {
       (err) => {
         console.log('error', err);
       }
-    );
+    );*/
   }
 
   /*
