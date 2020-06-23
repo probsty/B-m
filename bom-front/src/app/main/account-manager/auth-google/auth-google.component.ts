@@ -50,6 +50,7 @@ export class AuthGoogleComponent implements OnInit {
       );
       if (this.error == undefined) {
         // envoyer requete a l'api avec this.user
+        console.log(this.user)
       }
     });
   }
