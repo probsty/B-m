@@ -18,6 +18,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  //   providers: [IsLoggedInGuard, httpInterceptorProviders],
+  providers: [IsLoggedInGuard, httpInterceptorProviders],
 })
 export class AppRoutingModule {}

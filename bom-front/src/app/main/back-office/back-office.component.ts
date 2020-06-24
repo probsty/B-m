@@ -11,11 +11,11 @@ import { ConfirmDeleteDialogComponent } from 'src/app/global/comfirm-delete-dial
   styleUrls: ['./back-office.component.sass'],
 })
 export class BackOfficeComponent implements OnInit {
-  rowsData: any;
+  rowsUserData: any;
   filters = {};
   filteredRows: any;
 
-  temp: any;
+  tempUser: any;
 
   dialogDeleteRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
@@ -24,7 +24,7 @@ export class BackOfficeComponent implements OnInit {
   private refreshDataTable(): void {
     console.log('didClick or has been affected by refresh table');
 
-    this.rowsData = [
+    this.rowsUserData = [
       {
         nom: 'MONOT',
         prenom: 'Guillaume',
@@ -44,7 +44,7 @@ export class BackOfficeComponent implements OnInit {
         admin: false,
       },
     ];
-    this.temp = this.rowsData;
+    this.tempUser = this.rowsUserData;
   }
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class BackOfficeComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.rowsData = this.temp.filter((d: any) => {
+    this.rowsUserData = this.tempUser.filter((d: any) => {
       return (
         Object.keys(this.filters).filter((p) => {
           return (

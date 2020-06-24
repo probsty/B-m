@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
-import {MatCardModule} from "@angular/material/card";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AuthGoogleComponent } from './auth-google/auth-google.component';
 import { AuthFacebookComponent } from './auth-facebook/auth-facebook.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { httpInterceptorProviders } from 'src/app/http-interceptors';
 
 const routes = [
   {
@@ -32,7 +33,13 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, LoginComponent, RegisterComponent, AuthGoogleComponent, AuthFacebookComponent],
+  declarations: [
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent,
+    AuthGoogleComponent,
+    AuthFacebookComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -43,7 +50,8 @@ const routes = [
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
+  //   providers: [httpInterceptorProviders],
 })
 export class AccountManagerModule {}

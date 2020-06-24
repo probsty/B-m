@@ -27,6 +27,7 @@
     "angularjs-facebook": "^0.2.3",
     "angularx-social-login": "^3.0.1",
     "jquery": "^3.5.1",
+    "ngx-editor": "^5.0.0-alpha.9",
     "ngx-slick-carousel": "^0.5.1",
     "rxjs": "~6.5.4",
     "slick-carousel": "^1.8.1",

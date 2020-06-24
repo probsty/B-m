@@ -10,7 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes = [
   {
@@ -33,6 +34,7 @@ const routes = [
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    FlexLayoutModule
   ],
   providers: [httpInterceptorProviders],
 })

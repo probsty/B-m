@@ -22,7 +22,7 @@ export class IsLoggedInGuard implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       console.log(`Don't care`);
-      this._router.navigate(['/']);
+    //   this._router.navigate(['/']);
       return true;
   }
 

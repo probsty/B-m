@@ -21,12 +21,15 @@ import { GlobalService } from '../services/global/global.service';
 export class ApiInterceptor implements HttpInterceptor {
   constructor(private _router: Router, private _globalService: GlobalService) {}
 
+  key = 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US';
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('ATT');
+    console.log('ATT', req);
     if (req.url.startsWith('/')) {
+      console.log('ATT');
       const token = localStorage.getItem('token') || undefined;
       let headers = req.headers;
       if (token) {
@@ -47,8 +50,8 @@ export class ApiInterceptor implements HttpInterceptor {
       return next.handle(apiReq).pipe(
         tap((event) => {
           if (event instanceof HttpResponse) {
-            if (event.body && event.body.token) {
-              localStorage.setItem('token', event.body.token);
+            if (event.body && event.body.access_token) {
+              localStorage.setItem('token', event.body.access_token);
             }
           }
         }),
@@ -57,11 +60,12 @@ export class ApiInterceptor implements HttpInterceptor {
             if (err.status === 403) {
               localStorage.removeItem('token');
               if (!req.url.startsWith('/reset-password/')) {
-                this._router.navigate(['/login']);
+                this._router.navigate(['/connexion']);
               }
             }
             if (err.status === 401) {
               // this._snackBar.errorMessage({translate: 'NOT_ALLOWED'});
+              console.log('not allowed on interceptor');
               this._router.navigate(['/']);
             }
           }
@@ -69,6 +73,7 @@ export class ApiInterceptor implements HttpInterceptor {
         })
       );
     }
+    console.log('return next handle');
     return next.handle(req);
   }
 }
