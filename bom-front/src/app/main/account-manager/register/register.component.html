@@ -1,10 +1,12 @@
 <p>register works!</p>
 
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>S'inscrire</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+  <img class="logo-img" src="../../../../assets/img/logo70px.png" alt="bom">
+  <mat-card-title>S'inscrire avec</mat-card-title>
+  <app-auth-google></app-auth-google>
+  <app-auth-google></app-auth-google>
+  <mat-card-title>Ou avec votre email</mat-card-title>
+  <mat-card-content>
         <form name="loginForm" [formGroup]="registerForm" novalidate (ngSubmit)="onRegister()">
           <mat-form-field appearance="outline">
             <mat-label>Nom utilisateur...</mat-label>
