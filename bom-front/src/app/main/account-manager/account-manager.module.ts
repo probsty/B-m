@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AuthGoogleComponent } from './auth-google/auth-google.component';
+import { AuthFacebookComponent } from './auth-facebook/auth-facebook.component';
 
 const routes = [
   {
@@ -31,7 +32,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, LoginComponent, RegisterComponent, AuthGoogleComponent],
+  declarations: [ProfileComponent, LoginComponent, RegisterComponent, AuthGoogleComponent, AuthFacebookComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

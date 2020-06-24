@@ -24,6 +24,8 @@
     "@angular/router": "~9.1.9",
     "@swimlane/ngx-datatable": "^17.0.0",
     "@types/gapi.auth2": "0.0.52",
+    "angularjs-facebook": "^0.2.3",
+    "angularx-social-login": "^3.0.1",
     "jquery": "^3.5.1",
     "ngx-slick-carousel": "^0.5.1",
     "rxjs": "~6.5.4",
