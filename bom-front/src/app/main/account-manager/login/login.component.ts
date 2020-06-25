@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
         (user) => {
           if (user) {
             console.log('User ', user);
-            this._router.navigate(['/']).then(() => {
-              // TODO: Need to find another solution to update navigation
-              location.reload();
-            });
+            // this._router.navigate(['/']).then(() => {
+
+            //   location.reload();
+            // });
           } else {
             console.error('An error occured while connecting to server');
           }
@@ -55,14 +55,14 @@ export class LoginComponent implements OnInit {
   }
 
   /*
-* Get email content in my register.component.html file
- */
+   * Get email content in my register.component.html file
+   */
   get email() {
     return this.loginForm.get('email');
   }
 
   /*
-  * Get password content in my register.component.html file
+   * Get password content in my register.component.html file
    */
   get password() {
     return this.loginForm.get('password');

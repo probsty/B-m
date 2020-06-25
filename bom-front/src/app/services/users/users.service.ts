@@ -14,29 +14,33 @@ export class UsersService {
   ) {}
 
   getAll(): Observable<any> {
-    return this._http.get(`${this._globalService.urlApi}/users`);
+    return this._http.get(`/users`);
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this._http.get('/users/me');
   }
 
   deleteUser(userId: string): Observable<any> {
-    return this._http.delete(`${this._globalService.urlApi}/users/${userId}`);
+    return this._http.delete(`/users/${userId}`);
   }
 
   toggleAdminRight({ id, admin, ...user }): Observable<any> {
-    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+    return this._http.put<any>(`/users/${id}`, {
       admin: !admin,
       ...user,
     });
   }
 
   setVerifiedStatus({ id, ...user }): Observable<any> {
-    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+    return this._http.put<any>(`/users/${id}`, {
       verified: true,
       ...user,
     });
   }
 
   editUser({ id, ...user }): Observable<any> {
-    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+    return this._http.put<any>(`/users/${id}`, {
       ...user,
     });
   }

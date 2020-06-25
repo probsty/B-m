@@ -14,13 +14,16 @@ export class AuthService {
   ) {}
 
   createUser(data: object): Observable<any> {
-    return this._http.post(this._globalService.urlApi + '/auth/local', data);
+    return this._http.post('/auth/local', data);
   }
 
   login(username: string, password: string): Observable<any> {
-    return this._http.post<any>(this._globalService.urlApi + '/auth/local', {
-      username,
-      password,
-    });
+    return this._http.post<any>(
+      '/auth/local',
+      {
+        identifier: username,
+        password,
+      }
+    );
   }
 }

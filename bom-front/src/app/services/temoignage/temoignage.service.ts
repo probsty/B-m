@@ -14,7 +14,7 @@ export class TemoignageService {
   ) {}
 
   addTemoignage(title: string, content: string): Observable<any> {
-    return this._http.post<any>(`${this._globalService.urlApi}/posts`, {
+    return this._http.post<any>(`/posts`, {
       tags: ['temoignage'],
       title,
       content,
@@ -22,7 +22,7 @@ export class TemoignageService {
   }
 
   getAllTemoignage(): Observable<any> {
-    return this._http.get<any>(`${this._globalService.urlApi}/posts`);
+    return this._http.get<any>(`/posts`);
   }
 
   updateTemoignage(
@@ -30,7 +30,7 @@ export class TemoignageService {
     title: string,
     content: string
   ): Observable<any> {
-    return this._http.put<any>(`${this._globalService.urlApi}/posts/${id}`, {
+    return this._http.put<any>(`/posts/${id}`, {
       tags: ['temoignage'],
       title,
       content,
@@ -38,11 +38,7 @@ export class TemoignageService {
   }
 
   testHeader(): Observable<any> {
-    const header = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US',
-    });
-    return this._http.get<any>(`${this._globalService.urlApi}/posts`, {
+    return this._http.get<any>(`/posts`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US',
