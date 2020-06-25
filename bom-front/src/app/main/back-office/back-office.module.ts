@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes = [
   {
@@ -34,7 +36,10 @@ const routes = [
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    QuillModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],
 })

@@ -28,6 +28,8 @@ import {
   FacebookLoginProvider
 } from 'angularx-social-login';
 
+import { QuillModule } from 'ngx-quill'
+
 @NgModule({
   declarations: [AppComponent, MainNavComponent, ConfirmDeleteDialogComponent, DialogComponent],
   imports: [
@@ -48,7 +50,8 @@ import {
     MatCardModule,
     HttpClientModule,
     MatDialogModule,
-    SocialLoginModule
+    SocialLoginModule,
+    QuillModule.forRoot()
   ],
   providers: [
     {

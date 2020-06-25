@@ -16,6 +16,7 @@ export class BackOfficeComponent implements OnInit {
   filteredRows: any;
 
   tempUser: any;
+  editorData = 'dsdsds';
 
   dialogDeleteRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
