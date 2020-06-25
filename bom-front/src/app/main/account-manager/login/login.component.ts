@@ -39,11 +39,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user) => {
           if (user) {
-            console.log('User ', user);
-            // this._router.navigate(['/']).then(() => {
+            this._router.navigate(['/']);
 
-            //   location.reload();
-            // });
           } else {
             console.error('An error occured while connecting to server');
           }

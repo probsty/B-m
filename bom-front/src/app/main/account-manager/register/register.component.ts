@@ -4,7 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from './state-matcher.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DialogComponent } from 'src/app/global/dialog/dialog.component';
-import {MatDialogRef, MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +16,9 @@ import {MatDialogRef, MatDialog, MatDialogConfig} from '@angular/material/dialog
   styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent implements OnInit {
-  public registerForm: FormGroup;
-  public matcher = new MyErrorStateMatcher();
-  public dialog: MatDialogRef<DialogComponent>;
+  registerForm: FormGroup;
+  matcher = new MyErrorStateMatcher();
+  dialog: MatDialogRef<DialogComponent>;
 
   constructor(
     private _authService: AuthService,
@@ -42,82 +46,73 @@ export class RegisterComponent implements OnInit {
   /*
    * Submit the forms
    */
-  onSubmit(): void {
-    console.log('On submit');
-  }
-
   onRegister(): void {
-    console.log('On register');
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      title: "Information création de compte",
-      description: "Veuillez confirmer votre email. Pensez à verifier vos spams :)"
-    };
-
-    this.dialog = this._dialog.open(DialogComponent, dialogConfig);
-    this.registerForm.reset();
-
-    /*const data = {
-      email: this.registerForm.get('email').value,
-      username: this.registerForm.get('username').value,
-      password: this.registerForm.get('password').value,
-    };
-
-    console.log(data);
-    this._authService.createUser(data).subscribe(
-      (user) => {
-        if (user) {
-          console.log('User ', user);
-          this._router.navigate(['/']).then(() => {
-            // TODO: Need to find another solution to update navigatio
-            location.reload();
-          });
-        } else {
-          console.error('An error occured while connecting to server');
-        }
+    this.dialog = this._dialog.open(DialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      data: {
+        title: 'Information création de compte',
+        description:
+          'Veuillez confirmer votre email. Pensez à verifier vos spams :)',
       },
-      (err) => {
-        console.log('error', err);
+    });
+
+    this.dialog.afterClosed().subscribe((isSend) => {
+      if (isSend) {
+        const data = {
+          email: this.registerForm.get('email').value,
+          username: this.registerForm.get('username').value,
+          password: this.registerForm.get('password').value,
+        };
+        this._authService.createUser(data).subscribe(
+          (user) => {
+            if (user) {
+              this._router.navigate(['/']);
+            } else {
+              console.error('An error occured while connecting to server');
+            }
+          },
+          (err) => {
+            console.log('error', err);
+          }
+        );
       }
-    );*/
+    });
   }
 
   /*
    * Custom validator for checking the passwords
    */
   checkPasswords(group: FormGroup) {
-    let password = group.get('password').value;
-    let confirmPassword = group.get('confirmPassword').value;
+    const password = group.get('password').value;
+    const confirmPassword = group.get('confirmPassword').value;
 
     return password === confirmPassword ? null : { notSame: true };
   }
 
   /*
-  * Get username content in my register.component.html file
+   * Get username content in my register.component.html file
    */
   get username() {
     return this.registerForm.get('username');
   }
 
   /*
-  * Get email content in my register.component.html file
+   * Get email content in my register.component.html file
    */
   get email() {
     return this.registerForm.get('email');
   }
 
   /*
-  * Get password content in my register.component.html file
+   * Get password content in my register.component.html file
    */
   get password() {
     return this.registerForm.get('password');
   }
 
   /*
-  * Get confirmPassword content in my register.component.html file
+   * Get confirmPassword content in my register.component.html file
    */
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
