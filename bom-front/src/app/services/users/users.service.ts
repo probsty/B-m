@@ -13,6 +13,10 @@ export class UsersService {
     private _globalService: GlobalService
   ) {}
 
+  getAll(): Observable<any> {
+    return this._http.get(`${this._globalService.urlApi}/users`);
+  }
+
   deleteUser(userId: string): Observable<any> {
     return this._http.delete(`${this._globalService.urlApi}/users/${userId}`);
   }
