@@ -17,10 +17,23 @@ export class UsersService {
     return this._http.delete(`${this._globalService.urlApi}/users/${userId}`);
   }
 
-  toggleAdminRight(userId: string, isAdmin: boolean): Observable<any> {
-    return this._http.put<any>(
-      `${this._globalService.urlApi}/users/${userId}`,
-      { admin: isAdmin }
-    );
+  toggleAdminRight({ id, admin, ...user }): Observable<any> {
+    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+      admin: !admin,
+      ...user,
+    });
+  }
+
+  setVerifiedStatus({ id, ...user }): Observable<any> {
+    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+      verified: true,
+      ...user,
+    });
+  }
+
+  editUser({ id, ...user }): Observable<any> {
+    return this._http.put<any>(`${this._globalService.urlApi}/users/${id}`, {
+      ...user,
+    });
   }
 }

@@ -4,6 +4,7 @@ import { deburr } from 'lodash';
 
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from 'src/app/global/comfirm-delete-dialog/confirm-delete-dialog.component';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-back-office',
@@ -20,13 +21,18 @@ export class BackOfficeComponent implements OnInit {
 
   dialogDeleteRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
-  constructor(private _dialog: MatDialog, private _router: Router) {}
+  constructor(
+    private _dialog: MatDialog,
+    private _router: Router,
+    private _userService: UsersService
+  ) {}
 
   private refreshDataTable(): void {
     console.log('didClick or has been affected by refresh table');
 
     this.rowsUserData = [
       {
+        id: 'asas',
         nom: 'MONOT',
         prenom: 'Guillaume',
         email: 'guillaume.monot@epitech.eu',
@@ -50,6 +56,7 @@ export class BackOfficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshDataTable();
+    this._userService.toggleAdminRight(this.rowsUserData[0]);
   }
 
   updateFilter(event: any, prop: string): void {
