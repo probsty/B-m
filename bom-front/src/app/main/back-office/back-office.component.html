@@ -42,7 +42,7 @@
                 prop="verified">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
 
-                    <mat-checkbox [checked]="row.verified" (click)="switchAdminRight(row, !row.verified)">
+                    <mat-checkbox [checked]="row.verified" (click)="switchUserVerified(row)">
                     </mat-checkbox>
                 </ng-template>
             </ngx-datatable-column>
@@ -51,7 +51,7 @@
                 [resizeable]="false" prop="admin">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
 
-                    <mat-checkbox [checked]="row.admin" (click)="switchAdminRight(row, !row.admin)"></mat-checkbox>
+                    <mat-checkbox [checked]="row.admin" (click)="switchAdminRight(row)"></mat-checkbox>
                 </ng-template>
             </ngx-datatable-column>
 
@@ -68,7 +68,7 @@
         <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
             <h1>{{isEditUser ? 'Modifier un utilisateur' : 'Créer un nouvel utilisateur'}}</h1>
             <mat-card-content>
-                <form fxLayout="column" name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+                <form fxLayout="column" name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="onSubmitUser()">
 
                     <mat-form-field appearance="outline">
                         <mat-label>Nom d'utilisateur</mat-label>

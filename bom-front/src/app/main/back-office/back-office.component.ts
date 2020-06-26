@@ -93,16 +93,42 @@ export class BackOfficeComponent implements OnInit {
     });
   }
 
-  switchAdminRight(row: any, isAdmin: boolean): void {
-    console.log(`${row.nom} is admin ${isAdmin}`);
-    // call service
-    this.refreshDataTable();
+  switchAdminRight(user: any): void {
+    this._userService.toggleAdminRight(user).subscribe(
+      () => {
+        this.refreshDataTable();
+      },
+      (err) => {
+        console.log('An error occured while trying to switch admin right', err);
+      }
+    );
+  }
+
+  switchUserVerified(user: any): void {
+    this._userService.toggleVerified(user).subscribe(
+      () => {
+        this.refreshDataTable();
+      },
+      (err) => {
+        console.log(
+          'An error occured while trying to switch verified right',
+          err
+        );
+      }
+    );
   }
 
   deleteUser(row: any): void {
     console.log('Row deleted');
     // call service
-    this.refreshDataTable();
+    this._userService.deleteUser(row.id).subscribe(
+      (user) => {
+        this.refreshDataTable();
+      },
+      (err) => {
+        console.log('An error occured while trying to switch verified right ', err);
+      }
+    );
   }
 
   selectUser(event: any): void {
@@ -114,7 +140,7 @@ export class BackOfficeComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onSubmitUser(): void {
     if (this.isEditUser) {
       const user = {
         ...this.selectedUser,

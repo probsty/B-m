@@ -32,6 +32,13 @@ export class UsersService {
     });
   }
 
+  toggleVerified({ id, verified, ...user }): Observable<any> {
+    return this._http.put<any>(`/users/${id}`, {
+      verified: !verified,
+      ...user,
+    });
+  }
+
   setVerifiedStatus({ id, ...user }): Observable<any> {
     return this._http.put<any>(`/users/${id}`, {
       verified: true,
