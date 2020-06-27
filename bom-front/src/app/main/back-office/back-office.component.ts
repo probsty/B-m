@@ -8,6 +8,8 @@ import { UsersService } from 'src/app/services/users/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DialogComponent } from 'src/app/global/dialog/dialog.component';
+import { TemoignageService } from 'src/app/services/temoignage/temoignage.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-back-office',
@@ -18,37 +20,55 @@ export class BackOfficeComponent implements OnInit {
   userForm: FormGroup;
   isEditUser = false;
   selectedUser: any;
-
   rowsUserData: any;
+  tempUser: any;
+
+  temoignageForm: FormGroup;
+  isEditTemoignage = false;
+  editorData = '';
+  selectedTemoignage: any;
+  rowsTemoignageData: any;
+  tempTemoignage: any;
+
   filters = {};
   filteredRows: any;
 
-  tempUser: any;
-  editorData = 'dsdsds';
-
   dialog: MatDialogRef<DialogComponent>;
-
   dialogDeleteRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
   constructor(
     private _authService: AuthService,
     private _dialog: MatDialog,
     private _router: Router,
+    private _formBuilder: FormBuilder,
     private _userService: UsersService,
-    private _formBuilder: FormBuilder
+    private _temoignageService: TemoignageService
   ) {}
 
   private refreshDataTable(): void {
-    console.log('didClick or has been affected by refresh table');
-
     this._userService.getAll().subscribe(
       (users) => {
-        console.log('users', users);
         this.rowsUserData = users;
         this.tempUser = users;
       },
       (err) => {
-        console.log('Error while fetching users');
+        console.log('Error while fetching users', err);
+      }
+    );
+
+    this._temoignageService.getAll().subscribe(
+      (posts: any) => {
+        this.rowsTemoignageData = posts.filter((post: any) => {
+          if (post.tags.includes('temoignage')) {
+            console.log(post);
+            return true;
+          }
+          return false;
+        });
+        this.tempTemoignage = this.rowsTemoignageData;
+      },
+      (err) => {
+        console.log('An error occured while fetching Temoignage', err);
       }
     );
   }
@@ -57,6 +77,11 @@ export class BackOfficeComponent implements OnInit {
     this.userForm = this._formBuilder.group({
       email: ['', Validators.required],
       username: ['', [Validators.required]],
+    });
+
+    this.temoignageForm = this._formBuilder.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
     });
 
     this.refreshDataTable();
@@ -82,11 +107,16 @@ export class BackOfficeComponent implements OnInit {
   }
 
   dialogDelete(row: any): void {
-    this.dialogDeleteRef = this._dialog.open(ConfirmDeleteDialogComponent, {
+    this.dialog = this._dialog.open(DialogComponent, {
       disableClose: true,
+      autoFocus: true,
+      data: {
+        title: 'Supprimer un utilisateur',
+        description: 'Voulez-vous supprimer ?',
+      },
     });
 
-    this.dialogDeleteRef.afterClosed().subscribe((data) => {
+    this.dialog.afterClosed().subscribe((data) => {
       if (data) {
         this.deleteUser(row);
       }
@@ -119,14 +149,15 @@ export class BackOfficeComponent implements OnInit {
   }
 
   deleteUser(row: any): void {
-    console.log('Row deleted');
-    // call service
     this._userService.deleteUser(row.id).subscribe(
       (user) => {
         this.refreshDataTable();
       },
       (err) => {
-        console.log('An error occured while trying to switch verified right ', err);
+        console.log(
+          'An error occured while trying to switch verified right ',
+          err
+        );
       }
     );
   }
@@ -191,5 +222,80 @@ export class BackOfficeComponent implements OnInit {
       email: '',
     });
     this.isEditUser = false;
+  }
+
+  prepareNewTemoignage(): void {
+    this.temoignageForm.patchValue({
+      title: '',
+      content: '',
+    });
+    this.isEditTemoignage = false;
+  }
+
+  selectTemoignage(event: any): void {
+    this.isEditTemoignage = true;
+    this.selectedTemoignage = event.selected[0];
+    this.temoignageForm.patchValue({
+      title: this.selectedTemoignage.title,
+      content: this.selectedTemoignage.content,
+    });
+  }
+
+  onSubmitTemoignage(): void {
+    if (this.isEditTemoignage) {
+      const temoignage = {
+        ...this.selectedTemoignage,
+        content: this.temoignageForm.get('content').value,
+        title: this.temoignageForm.get('title').value,
+      };
+      this._temoignageService.editTemoignage(temoignage).subscribe(
+        () => {
+          this.refreshDataTable();
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
+    } else {
+      const temoignage = {
+        content: this.temoignageForm.get('content').value,
+        title: this.temoignageForm.get('title').value,
+      };
+      this._temoignageService.addTemoignage(temoignage).subscribe(
+        (data) => {
+          this.refreshDataTable();
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
+    }
+  }
+
+  deleteTemoignage(row: any): void {
+    this.dialog = this._dialog.open(DialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      data: {
+        title: 'Supprimer un témoignage',
+        description: 'Voulez-vous supprimer ?',
+      },
+    });
+
+    this.dialog.afterClosed().subscribe((isSend) => {
+      if (isSend) {
+        this._temoignageService.deleteTemoignage(row.id).subscribe(
+          () => {
+            this.refreshDataTable();
+          },
+          (err) => {
+            console.log(
+              'An error occured while trying to delete temoignage',
+              err
+            );
+          }
+        );
+      }
+    });
   }
 }
