@@ -29,7 +29,10 @@ export class ApiInterceptor implements HttpInterceptor {
       const token = localStorage.getItem('token') || undefined;
       let headers = req.headers;
 
-      if (req.url.startsWith('/auth/')) {
+      if (
+        req.url.startsWith('/auth/') ||
+        (req.url.startsWith('/posts') && req.method === 'GET')
+      ) {
         headers = req.headers.append(
           'Authorization',
           this._globalService.apiKey
