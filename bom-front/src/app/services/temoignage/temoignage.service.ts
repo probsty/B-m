@@ -13,7 +13,7 @@ export class TemoignageService {
     private _globalService: GlobalService
   ) {}
 
-  addTemoignage(title: string, content: string): Observable<any> {
+  addTemoignage({ title, content }): Observable<any> {
     return this._http.post<any>(`/posts`, {
       tags: ['temoignage'],
       title,
@@ -21,15 +21,11 @@ export class TemoignageService {
     });
   }
 
-  getAllTemoignage(): Observable<any> {
+  getAll(): Observable<any> {
     return this._http.get<any>(`/posts`);
   }
 
-  updateTemoignage(
-    id: string,
-    title: string,
-    content: string
-  ): Observable<any> {
+  editTemoignage({ id, title, content }): Observable<any> {
     return this._http.put<any>(`/posts/${id}`, {
       tags: ['temoignage'],
       title,
@@ -37,12 +33,7 @@ export class TemoignageService {
     });
   }
 
-  testHeader(): Observable<any> {
-    return this._http.get<any>(`/posts`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US',
-      },
-    });
+  deleteTemoignage(temoignageId: string): Observable<any> {
+    return this._http.delete(`/posts/${temoignageId}`);
   }
 }
