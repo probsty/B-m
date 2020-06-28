@@ -1,6 +1,8 @@
 import {SocialAuthService, SocialUser} from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import {Component, OnInit} from "@angular/core";
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-auth-facebook',
@@ -10,7 +12,13 @@ import {Component, OnInit} from "@angular/core";
 export class AuthFacebookComponent implements OnInit {
   user: SocialUser;
 
-  constructor(private authService: SocialAuthService) { }
+  constructor (
+    private authService: SocialAuthService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer) {this.matIconRegistry.addSvgIcon(
+    "logoFacebook",
+    this.domSanitizer.bypassSecurityTrustResourceUrl('assets/img/facebook.svg'));
+  }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
+
+const googleLogoURL =
+  "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
 
 @Component({
   selector: 'app-auth-google',
@@ -12,7 +17,13 @@ export class AuthGoogleComponent implements OnInit {
   public error: string;
   public user: gapi.auth2.GoogleUser;
 
-  constructor() { }
+  constructor (
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      "logoGoogle",
+      this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
+  }
 
   ngOnInit(): void {
   }
