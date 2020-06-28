@@ -4,12 +4,12 @@ import { TemoignageService } from 'src/app/services/temoignage/temoignage.servic
 @Component({
   selector: 'app-temoignage',
   templateUrl: './temoignage.component.html',
-  styleUrls: ['./temoignage.component.sass'],
+  styleUrls: ['./temoignage.component.scss'],
 })
 export class TemoignageComponent implements OnInit {
   constructor(private _temoignageService: TemoignageService) {}
 
   ngOnInit(): void {
-    
+
   }
 }

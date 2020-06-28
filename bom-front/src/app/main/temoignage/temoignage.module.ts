@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemoignageComponent } from './temoignage.component';
 import { RouterModule } from '@angular/router';
-import { IsLoggedInGuard } from 'src/app/guards/is-logged-in.guard';
 import { httpInterceptorProviders } from 'src/app/http-interceptors';
+import {GlobalModule} from "../../global/global.module";
 
 const routes = [
     {
       path: 'temoignage',
-    //   canActivate : [IsLoggedInGuard],
       component: TemoignageComponent
     }
   ];
@@ -17,8 +16,8 @@ const routes = [
   declarations: [TemoignageComponent],
   imports: [
     CommonModule,
-
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    GlobalModule
   ],
   providers: [httpInterceptorProviders]
 })
