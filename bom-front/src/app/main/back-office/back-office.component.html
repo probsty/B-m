@@ -1,175 +1,186 @@
 <div class="content" fxLayout="column" fxFlex="100">
-    <div fxLayout="row" class="content">
-        <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsUserData" [columnMode]="'force'"
-            (select)="selectUser($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
-            [rowHeight]="70" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
-            [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+    <mat-card class="card-content">
+        <mat-card-title>Utilisateurs</mat-card-title>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Nom d\'utilisateur'"
-                [resizeable]="false" prop="username">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
-                        <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
-                            <span class="datatable-header-cell-label draggable">
-                                {{ column.name }}
+        <div fxLayout="row">
+            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsUserData" [columnMode]="'force'"
+                (select)="selectUser($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
+                [rowHeight]="70" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
+                [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Nom d\'utilisateur'"
+                    [resizeable]="false" prop="username">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
                             </span>
-                        </span>
-                        <mat-form-field>
-                            <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
-                        </mat-form-field>
-                    </div>
-                </ng-template>
-            </ngx-datatable-column>
+                            <mat-form-field>
+                                <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
+                            </mat-form-field>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Adresse email'" [resizeable]="false"
-                [width]="250" prop="email">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
-                        <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
-                            <span class="datatable-header-cell-label draggable">
-                                {{ column.name }}
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Adresse email'"
+                    [resizeable]="false" [width]="250" prop="email">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
                             </span>
-                        </span>
-                        <mat-form-field>
-                            <input matInput type="email" (keyup)="updateFilter($event, column.prop)" />
+                            <mat-form-field>
+                                <input matInput type="email" (keyup)="updateFilter($event, column.prop)" />
+                            </mat-form-field>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Vérifié'" [resizeable]="false"
+                    prop="verified">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+                        <mat-checkbox [checked]="row.verified" (click)="switchUserVerified(row)">
+                        </mat-checkbox>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Administrateur'"
+                    [resizeable]="false" prop="admin">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+                        <mat-checkbox [checked]="row.admin" (click)="switchAdminRight(row)"></mat-checkbox>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'"
+                    [resizeable]="false">
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <button mat-icon-button (click)="dialogDelete(row)">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+                <h1>{{isEditUser ? 'Modifier un utilisateur' : 'Créer un nouvel utilisateur'}}</h1>
+                <mat-card-content>
+                    <form fxLayout="column" name="userForm" [formGroup]="userForm" novalidate
+                        (ngSubmit)="onSubmitUser()">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nom d'utilisateur</mat-label>
+                            <input matInput type="text" formControlName="username">
                         </mat-form-field>
-                    </div>
-                </ng-template>
-            </ngx-datatable-column>
 
+                        <mat-form-field appearance="outline">
+                            <mat-label>Adresse e-mail</mat-label>
+                            <input class="test" matInput type="email" formControlName="email" email="true">
+                        </mat-form-field>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Vérifié'" [resizeable]="false"
-                prop="verified">
-                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+                            <button type="submit" mat-raised-button class="submit-button" color="primary"
+                                style="white-space: pre-wrap !important;">
+                                {{isEditUser ? 'Modifier' : 'Ajouter'}}
+                            </button>
+                            <button type="button" *ngIf="isEditUser" mat-raised-button color="primary"
+                                (click)="prepareNewUser()" style="white-space: pre-wrap !important;">
+                                Nouveau
+                            </button>
 
-                    <mat-checkbox [checked]="row.verified" (click)="switchUserVerified(row)">
-                    </mat-checkbox>
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Administrateur'"
-                [resizeable]="false" prop="admin">
-                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-
-                    <mat-checkbox [checked]="row.admin" (click)="switchAdminRight(row)"></mat-checkbox>
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'" [resizeable]="false">
-                <ng-template ngx-datatable-cell-template let-row="row">
-                    <button mat-icon-button (click)="dialogDelete(row)">
-                        <mat-icon color="warn">delete</mat-icon>
-                    </button>
-                </ng-template>
-            </ngx-datatable-column>
-
-        </ngx-datatable>
-
-        <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
-            <h1>{{isEditUser ? 'Modifier un utilisateur' : 'Créer un nouvel utilisateur'}}</h1>
-            <mat-card-content>
-                <form fxLayout="column" name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="onSubmitUser()">
-
-                    <mat-form-field appearance="outline">
-                        <mat-label>Nom d'utilisateur</mat-label>
-                        <input matInput type="text" formControlName="username">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                        <mat-label>Adresse e-mail</mat-label>
-                        <input class="test" matInput type="email" formControlName="email" email="true">
-                    </mat-form-field>
-
-                    <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
-                        <button type="submit" mat-raised-button class="submit-button" color="primary"
-                            style="white-space: pre-wrap !important;">
-                            {{isEditUser ? 'Modifier' : 'Ajouter'}}
-                        </button>
-                        <button type="button" *ngIf="isEditUser" mat-raised-button color="primary"
-                            (click)="prepareNewUser()" style="white-space: pre-wrap !important;">
-                            Nouveau
-                        </button>
-
-                    </mat-card-actions>
-                </form>
-            </mat-card-content>
+                        </mat-card-actions>
+                    </form>
+                </mat-card-content>
+            </div>
         </div>
-    </div>
+    </mat-card>
 
-    <div fxLayout="row" class="content">
-        <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsTemoignageData" [columnMode]="'force'"
-            (select)="selectTemoignage($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
-            [rowHeight]="'auto'" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
-            [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+    <mat-card class="card-content">
+        <mat-card-title>Témoignages</mat-card-title>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Titre'" [resizeable]="false"
-                prop="title">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
-                        <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
-                            <span class="datatable-header-cell-label draggable">
-                                {{ column.name }}
+        <div fxLayout="row" class="content">
+            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsTemoignageData" [columnMode]="'force'"
+                (select)="selectTemoignage($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
+                [rowHeight]="'auto'" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
+                [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Titre'" [resizeable]="false"
+                    prop="title">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
                             </span>
-                        </span>
-                        <!-- <mat-form-field>
+                            <!-- <mat-form-field>
                             <input matInput type="text" (keyup)="updateFilter($event, column.prop)" />
                         </mat-form-field> -->
-                    </div>
-                </ng-template>
-            </ngx-datatable-column>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Témoignage'" [resizeable]="false"
-                [width]="500" prop="content">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
-                        <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
-                            <span class="datatable-header-cell-label draggable">
-                                {{ column.name }}
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Témoignage'"
+                    [resizeable]="false" [width]="500" prop="content">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
                             </span>
-                        </span>
 
-                    </div>
-                </ng-template>
-            </ngx-datatable-column>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'" [resizeable]="false">
-                <ng-template ngx-datatable-cell-template let-row="row">
-                    <button mat-icon-button (click)="deleteTemoignage(row)">
-                        <mat-icon color="warn">delete</mat-icon>
-                    </button>
-                </ng-template>
-            </ngx-datatable-column>
-
-        </ngx-datatable>
-
-        <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
-            <h1>{{isEditTemoignage ? 'Modifier un témoignage' : 'Créer un nouveau témoignage'}}</h1>
-            <mat-card-content>
-                <form fxLayout="column" name="temoignageForm" [formGroup]="temoignageForm" novalidate
-                    (ngSubmit)="onSubmitTemoignage()">
-
-                    <mat-form-field appearance="outline">
-                        <mat-label>Titre</mat-label>
-                        <input matInput type="text" formControlName="title">
-                        <!-- <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon> -->
-                    </mat-form-field>
-
-                    <quill-editor formControlName="content"></quill-editor>
-
-                    <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
-                        <button type="submit" mat-raised-button class="submit-button" color="primary"
-                            style="white-space: pre-wrap !important;">
-                            {{isEditTemoignage ? 'Modifier' : 'Ajouter'}}
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'"
+                    [resizeable]="false">
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <button mat-icon-button (click)="deleteTemoignage(row)">
+                            <mat-icon color="warn">delete</mat-icon>
                         </button>
-                        <button type="button" *ngIf="isEditTemoignage" mat-raised-button color="primary"
-                            (click)="prepareNewTemoignage()" style="white-space: pre-wrap !important;">
-                            Nouveau
-                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
 
-                    </mat-card-actions>
-                </form>
-            </mat-card-content>
+            </ngx-datatable>
+
+            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+                <h1>{{isEditTemoignage ? 'Modifier un témoignage' : 'Créer un nouveau témoignage'}}</h1>
+                <mat-card-content>
+                    <form fxLayout="column" name="temoignageForm" [formGroup]="temoignageForm" novalidate
+                        (ngSubmit)="onSubmitTemoignage()">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Titre</mat-label>
+                            <input matInput type="text" formControlName="title">
+                            <!-- <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon> -->
+                        </mat-form-field>
+
+                        <quill-editor formControlName="content"></quill-editor>
+
+                        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+                            <button type="submit" mat-raised-button class="submit-button" color="primary"
+                                style="white-space: pre-wrap !important;">
+                                {{isEditTemoignage ? 'Modifier' : 'Ajouter'}}
+                            </button>
+                            <button type="button" *ngIf="isEditTemoignage" mat-raised-button color="primary"
+                                (click)="prepareNewTemoignage()" style="white-space: pre-wrap !important;">
+                                Nouveau
+                            </button>
+
+                        </mat-card-actions>
+                    </form>
+                </mat-card-content>
+            </div>
         </div>
-    </div>
+    </mat-card>
 
 </div>
