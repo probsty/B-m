@@ -145,7 +145,8 @@
         <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
             <h1>{{isEditTemoignage ? 'Modifier un témoignage' : 'Créer un nouveau témoignage'}}</h1>
             <mat-card-content>
-                <form fxLayout="column" name="temoignageForm" [formGroup]="temoignageForm" novalidate (ngSubmit)="onSubmitTemoignage()">
+                <form fxLayout="column" name="temoignageForm" [formGroup]="temoignageForm" novalidate
+                    (ngSubmit)="onSubmitTemoignage()">
 
                     <mat-form-field appearance="outline">
                         <mat-label>Titre</mat-label>
