@@ -9,6 +9,6 @@ import { TemoignageComponent } from './temoignage/temoignage.component';
 @NgModule({
   imports: [CommonModule, FlexLayoutModule, MatCardModule],
   declarations: [CarouselComponent, ProductCardComponent, TemoignageComponent],
-  exports: [CarouselComponent, ProductCardComponent],
+  exports: [CarouselComponent, ProductCardComponent, TemoignageComponent],
 })
 export class GlobalModule {}
