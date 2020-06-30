@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDeleteDialogComponent } from './global/comfirm-delete-dialog/confirm-delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from "./global/dialog/dialog.component";
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
 import {
   FacebookLoginProvider
 } from 'angularx-social-login';
@@ -62,6 +62,10 @@ import { QuillModule } from 'ngx-quill'
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('clientId'),
+          },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider("28129810845-f000g9htrjje7pblhncs12iljf4l2a8v.apps.googleusercontent.com")
           },
         ],
       } as SocialAuthServiceConfig,
