@@ -5,11 +5,17 @@ import { deburr } from 'lodash';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from 'src/app/global/comfirm-delete-dialog/confirm-delete-dialog.component';
 import { UsersService } from 'src/app/services/users/users.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DialogComponent } from 'src/app/global/dialog/dialog.component';
 import { TemoignageService } from 'src/app/services/temoignage/temoignage.service';
 import { filter } from 'rxjs/operators';
+import { ProduitService } from 'src/app/services/produit/produit.service';
 
 @Component({
   selector: 'app-back-office',
@@ -28,7 +34,6 @@ export class BackOfficeComponent implements OnInit {
   editorData = '';
   selectedTemoignage: any;
   rowsTemoignageData: any;
-  tempTemoignage: any;
 
   filters = {};
   filteredRows: any;
@@ -36,13 +41,20 @@ export class BackOfficeComponent implements OnInit {
   dialog: MatDialogRef<DialogComponent>;
   dialogDeleteRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
+  images = [];
+  isEditProduct = false;
+  productForm: FormGroup;
+  selectedProduct: any;
+  rowsProductData: any;
+
   constructor(
     private _authService: AuthService,
     private _dialog: MatDialog,
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _userService: UsersService,
-    private _temoignageService: TemoignageService
+    private _temoignageService: TemoignageService,
+    private _productService: ProduitService
   ) {}
 
   private refreshDataTable(): void {
@@ -65,10 +77,19 @@ export class BackOfficeComponent implements OnInit {
           }
           return false;
         });
-        this.tempTemoignage = this.rowsTemoignageData;
       },
       (err) => {
         console.log('An error occured while fetching Temoignage', err);
+      }
+    );
+
+    this._productService.getAll().subscribe(
+      (products) => {
+        this.rowsProductData = products;
+        console.log('products', products);
+      },
+      (err) => {
+        console.log('Error while fetching products', err);
       }
     );
   }
@@ -82,6 +103,15 @@ export class BackOfficeComponent implements OnInit {
     this.temoignageForm = this._formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
+    });
+
+    this.productForm = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      amount: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      file: ['', [Validators.required]],
+      fileSource: ['', [Validators.required]],
     });
 
     this.refreshDataTable();
@@ -297,5 +327,121 @@ export class BackOfficeComponent implements OnInit {
         );
       }
     });
+  }
+
+  prepareNewProduct(): void {
+    this.productForm.patchValue({
+      name: '',
+      amount: 0,
+      price: 0,
+      description: '',
+    });
+    this.isEditProduct = false;
+  }
+
+  selectProduct(event: any): void {
+    this.isEditProduct = true;
+    this.selectedProduct = event.selected[0];
+    console.log(this.selectedProduct);
+    this.productForm.patchValue({
+      name: this.selectedProduct.name,
+      amount: this.selectedProduct.amount,
+      price: this.selectedProduct.price,
+      description: this.selectedProduct.description,
+    });
+  }
+
+  onSubmitProduct(): void {
+    if (this.isEditProduct) {
+      const product = {
+        ...this.selectedProduct,
+        name: this.productForm.get('name').value,
+        amount: this.productForm.get('amount').value,
+        price: this.productForm.get('price').value,
+        description: this.productForm.get('description').value,
+      };
+      //   this._productService.editProduct(product).subscribe(
+      this._productService.editProduct(product).subscribe(
+        () => {
+          this.refreshDataTable();
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
+    } else {
+      const product = {
+        name: this.productForm.get('name').value,
+        amount: this.productForm.get('amount').value,
+        price: this.productForm.get('price').value,
+        description: this.productForm.get('description').value,
+      };
+      this._productService.addProduct(product).subscribe(
+        (data) => {
+          this.refreshDataTable();
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
+    }
+  }
+
+  deleteProduct(row: any): void {
+    this.dialog = this._dialog.open(DialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      data: {
+        title: 'Supprimer un produit',
+        description: 'Voulez-vous supprimer ?',
+      },
+    });
+
+    this.dialog.afterClosed().subscribe((isSend) => {
+      if (isSend) {
+        this._productService.deleteProduct(row.id).subscribe(
+          () => {
+            this.refreshDataTable();
+          },
+          (err) => {
+            console.log('An error occured while trying to delete Product', err);
+          }
+        );
+      }
+    });
+  }
+
+  get f() {
+    return this.productForm.controls;
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+          console.log(event.target.result);
+          this.images.push(event.target.result);
+
+          this.productForm.patchValue({
+            fileSource: this.images,
+          });
+        };
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
+
+  submit() {
+    console.log(this.productForm.value);
+    //     this.http
+    //       .post('http://localhost:8001/upload.php', this.productForm.value)
+    //       .subscribe((res) => {
+    //         console.log(res);
+    //         alert('Uploaded Successfully.');
+    //       });
   }
 }

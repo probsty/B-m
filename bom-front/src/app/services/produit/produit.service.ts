@@ -13,7 +13,39 @@ export class ProduitService {
     private _globalService: GlobalService
   ) {}
 
-  getAllProducts(): Observable<any> {
-    return this._http.get<any>(`${this._globalService.urlApi}/products`);
+  getAll(): Observable<any> {
+    return this._http.get<any>(`/products`);
+  }
+
+  addProduct({ name, amount, price, description }): Observable<any> {
+    return this._http.post<any>(`/products`, {
+      //   images,
+      images: [''],
+      name,
+      amount,
+      price,
+      description,
+    });
+  }
+
+  editProduct({
+    id,
+    name,
+    amount,
+    price,
+    description,
+    ...product
+  }): Observable<any> {
+    return this._http.put<any>(`/products/${id}`, {
+      name,
+      amount,
+      price,
+      description,
+      ...product,
+    });
+  }
+
+  deleteProduct(productId: string): Observable<any> {
+    return this._http.delete(`/products/${productId}`);
   }
 }

@@ -183,4 +183,132 @@
         </div>
     </mat-card>
 
+    <mat-card class="card-content">
+        <mat-card-title>Produits</mat-card-title>
+
+        <div fxLayout="row" class="content">
+            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsProductData" [columnMode]="'force'"
+                (select)="selectProduct($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
+                [rowHeight]="'auto'" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
+                [messages]="{emptyMessage: 'Aucun utilisateurs'}">
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Nom'" [resizeable]="false"
+                    prop="name">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
+                            </span>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Description'"
+                    [resizeable]="false" [width]="250" prop="description">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
+                            </span>
+
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [width]="50" [resizeable]="false" [name]="'Prix'"
+                    [resizeable]="false" prop="price">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        {{row.price}} €
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Quantité'" [resizeable]="false"
+                    prop="amount" [width]="70">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly start" class="pt-8 w-80-p">
+                            <span (click)="sort()" class="datatable-header-cell-wrapper ng-star-inserted">
+                                <span class="datatable-header-cell-label draggable">
+                                    {{ column.name }}
+                                </span>
+                            </span>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Images'" [resizeable]="false"
+                    prop="price">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+                        <div *ngFor="let image of row.images">
+                            <img *ngIf="image" class="image-product" [src]="image" alt="bom">
+                            <p *ngIf="!image">Pas d'images</p>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [draggable]="false" [resizeable]="false" [name]="'Supprimer'"
+                    [resizeable]="false">
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <button mat-icon-button (click)="deleteProduct(row)">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+                <h1>{{isEditProduct ? 'Modifier un produit' : 'Créer un nouveau produit'}}</h1>
+                <mat-card-content>
+
+                    <form fxLayout="column" [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nom</mat-label>
+                            <input matInput type="text" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Prix</mat-label>
+                            <input matInput type="number" formControlName="price">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Quantité</mat-label>
+                            <input matInput type="number" formControlName="amount">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <input matInput type="text" formControlName="description">
+                        </mat-form-field>
+
+                        <div class="form-group">
+                            <label for="file">File</label>
+                            <input formControlName="file" id="file" type="file" class="form-control" multiple=""
+                                (change)="onFileChange($event)">
+                            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                <div *ngIf="f.file.errors.required">File is required.</div>
+                            </div>
+                        </div>
+
+                        <img *ngFor='let url of images' [src]="url" height="150" width="200px" style="margin: 3px;">
+                        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+                            <button type="submit" mat-raised-button class="submit-button" color="primary"
+                                style="white-space: pre-wrap !important;">
+                                {{isEditProduct ? 'Modifier' : 'Ajouter'}}
+                            </button>
+                            <button type="button" *ngIf="isEditProduct" mat-raised-button color="primary"
+                                (click)="prepareNewProduct()" style="white-space: pre-wrap !important;">
+                                Nouveau
+                            </button>
+
+                        </mat-card-actions>
+                    </form>
+                </mat-card-content>
+            </div>
+        </div>
+    </mat-card>
+
 </div>
