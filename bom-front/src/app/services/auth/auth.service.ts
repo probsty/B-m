@@ -26,4 +26,22 @@ export class AuthService {
       }
     );
   }
+
+  loginGoogle(googleToken: string): Observable<any> {
+    return this._http.post<any>(
+      '/auth/google',
+      {
+        google_token: googleToken
+      }
+    );
+  }
+
+  loginFacebook(facebookToken: string): Observable<any> {
+    return this._http.post<any>(
+      '/auth/facebook',
+      {
+        facebook_token: facebookToken
+      }
+    );
+  }
 }
