@@ -7,7 +7,6 @@ import { DialogComponent } from 'src/app/global/dialog/dialog.component';
 import {
   MatDialogRef,
   MatDialog,
-  MatDialogConfig,
 } from '@angular/material/dialog';
 
 @Component({
@@ -47,37 +46,28 @@ export class RegisterComponent implements OnInit {
    * Submit the forms
    */
   onRegister(): void {
-    this.dialog = this._dialog.open(DialogComponent, {
-      disableClose: true,
-      autoFocus: true,
-      data: {
-        title: 'Information création de compte',
-        description:
-          'Veuillez confirmer votre email. Pensez à verifier vos spams :)',
-      },
-    });
-
-    this.dialog.afterClosed().subscribe((isSend) => {
-      if (isSend) {
-        const data = {
-          email: this.registerForm.get('email').value,
-          username: this.registerForm.get('username').value,
-          password: this.registerForm.get('password').value,
-        };
-        this._authService.createUser(data).subscribe(
-          (user) => {
-            if (user) {
-              this._router.navigate(['/']);
-            } else {
-              console.error('An error occured while connecting to server');
-            }
+    const data = {
+      email: this.registerForm.get('email').value,
+      username: this.registerForm.get('username').value,
+      password: this.registerForm.get('password').value,
+    };
+    this._authService.createUser(data).subscribe(
+      (user) => {
+        this.dialog = this._dialog.open(DialogComponent, {
+          disableClose: true,
+          autoFocus: true,
+          data: {
+            title: 'Information création de compte',
+            description:
+              'Veuillez confirmer votre email. Pensez à verifier vos spams :)',
           },
-          (err) => {
-            console.log('error', err);
+        });
+        this.dialog.afterClosed().subscribe((isSend) => {
+          if (isSend) {
+            this._router.navigate(['/']);
           }
-        );
-      }
-    });
+        })
+      });
   }
 
   /*

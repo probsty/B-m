@@ -15,11 +15,15 @@ import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { GlobalService } from '../services/global/global.service';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "../global/dialog/dialog.component";
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  constructor(private _router: Router, private _globalService: GlobalService) {}
+  constructor(private _router: Router,
+              private _globalService: GlobalService,
+              private _matDialog: MatDialog) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -62,7 +66,17 @@ export class ApiInterceptor implements HttpInterceptor {
           }
         }),
         catchError((err) => {
-          if (err instanceof HttpErrorResponse) {
+          console.log(err);
+         if (err instanceof HttpErrorResponse) {
+           this._matDialog.open(DialogComponent, {
+             disableClose: true,
+             autoFocus: true,
+             data: {
+               title: 'Information importante !',
+               description:
+               err.error.error,
+             },
+           })
             if (err.status === 403) {
               localStorage.removeItem('token');
               localStorage.removeItem('admin');
