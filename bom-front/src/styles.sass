@@ -8,6 +8,81 @@ $page-title-color:#fff
 $footer-bg:#000000
 $footer-color:#ffffff
 
+//Main body 
+$body-bg:#f3f3f4
+$grey-bg:#f3f3f4
+
+//Body color
+
+$font-color: #3A405B
+
+//$border
+
+$theme-border-color:#d5d5d5
+
+$html-font-size: 16px
+$mat-font-family: 'Roboto', sans-serif
+$font-size-base: 0.875rem !default
+$font-weight-base: 400 !default
+$font-weight-medium: 500 !default
+$font-weight-bold: 600 !default
+
+//Heading Font Size 
+
+$font-size-h1: 3.25rem !default//52px
+$font-size-h2: 2.813rem !default//45px
+$font-size-h3: 2.125rem !default//34px
+$font-size-h4: 1.5rem !default//24px
+$font-size-h5: 1.25rem !default//20px
+$font-size-h6: 1rem !default//16px
+
+//Heading Font color
+
+$h1-font-color:rgba(0,0,0,0.87)
+$h2-font-color:rgba(0,0,0,0.87)
+$h3-font-color:rgba(0,0,0,0.87)
+$h4-font-color:rgba(0,0,0,0.87)
+$h5-font-color:rgba(0,0,0,0.87)
+$h6-font-color:rgba(0,0,0,0.87)
+
+$headings-margin-bottom: (1rem / 2) !default
+$headings-font-family:   inherit !default
+$headings-font-weight:   500 !default
+$headings-line-height:   1.1 !default
+$headings-color:         inherit !default
+
+//Page Title
+$page-title-padding:7rem 0
+$page-title-align:center
+$page-title-color:#fff
+
+//Header
+
+$main-nav-color:#fff
+
+//Sub-menu
+
+$sub-menu-bg:#fff
+$sub-menu-color:$font-color
+
+//Pre Loader
+$loader-bg:#fff
+$loader-color:#283593
+
+//Footer
+
+$footer-bg:#000000
+$footer-color:#ffffff
+
+//rating
+
+$rating-selected-color:#EDB867
+$rating-unselected-color:#d2d2d2
+
+//card Shadow
+
+$card-shadow:0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12)
+
 //Page Title
 .page-title-bar
     padding: 7rem 0
@@ -27,3 +102,410 @@ $footer-color:#ffffff
     align-items: center
     margin-top: 2em
     color: $footer-color
+
+// BASE
+
+*, ::after, ::before
+    box-sizing: border-box
+
+// Basics tags 
+code
+    padding: 8px
+    background: $body-bg
+
+pre
+    background-color: $body-bg
+    padding: 15px
+
+img
+    height: auto
+    max-width: 100%
+    vertical-align: middle
+
+//Table
+.table
+    width: 100%
+    max-width: 100%
+    margin-bottom: 1rem
+
+    & thead
+        text-align: left
+
+    & th,
+
+    & td
+        padding: 0.75rem
+        vertical-align: top
+        border-top: 1px solid #eceeef
+
+    & thead th
+        vertical-align: bottom
+        border-bottom: 2px solid #eceeef
+
+    & tbody+tbody
+        border-top: 2px solid #eceeef
+
+    & .table
+        background-color: #fff
+
+//Container
+.container
+    padding-right: 15px
+    padding-left: 15px
+    margin-right: auto
+    margin-left: auto
+
+    &-fluid
+        padding-left: 1rem
+        padding-right: 1rem
+
+@media (min-width:576px)
+.container
+    width: 540px
+
+@media (min-width:768px)
+.container
+    width: 720px
+
+@media (min-width:992px)
+.container
+    width: 960px
+
+@media (min-width:1200px)
+.container
+    width: 1140px
+
+@media (min-width:1520px)
+.container
+    width: 1450px
+
+//Row and col fix 
+//If you dont wanna use this then You can use fxFlexGap to give margin to the column 
+.col-gap
+    margin-left: -15px
+    margin-right: -15px
+
+>div
+    padding-left: 1rem
+    padding-right: 1rem
+    margin-bottom: 1rem
+    margin-top: 1rem
+
+//Block Title 
+.block-title h2
+    margin-bottom: 3rem
+
+// Section gap class between the home page sections
+.section-gap
+    padding: 5rem 0
+
+    &-lg
+        padding: 7rem 0
+
+//position
+.relative
+    position: relative
+
+//
+.w-100
+    width: 100%
+
+// Horizontal Line
+hr
+    border: 1px solid rgba(255, 255, 255, 0.2)
+    margin: 3rem 0
+
+.dark-border
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+.spacer
+    border-bottom: 1px solid $theme-border-color
+    margin: 1.5rem 0
+
+.bg-grey
+    background: $grey-bg
+
+//Round Circle
+.round-corner
+    border-radius: 100%
+
+.position-relative
+    position: relative
+
+.shop-card-wrapper .mat-card
+    margin-bottom: 2rem
+    overflow: hidden
+
+//product detail
+@media(max-width:959px)
+.product-detail-content
+    margin-top: 3rem
+
+@media(max-width:420px)
+.detail-btns
+    button
+        margin-bottom: 1rem
+        display: block
+
+//cdk pan//review
+.user-list-wrap
+    max-height: 300px
+    overflow-y: auto
+    overflow-x: hidden
+    padding: 2rem
+
+.alt-sec:nth-of-type(2n)>div:first-child
+    order: 1
+
+//team
+embryo-team
+    width: 100% !important
+
+body app-main,body .mat-drawer-content
+    overflow-x: hidden
+    overflow-y: auto
+
+// 
+.section-gap
+    padding: 5rem 0
+
+.col-gap
+    margin-left: -15px
+    margin-right: -15px
+
+    >div
+        padding-left: 1rem
+        padding-right: 1rem
+        margin-bottom: 1rem
+        margin-top: 1rem
+
+.position-relative
+    position: relative
+
+.m-0
+    margin: 0!important
+
+.mt-0,
+.my-0
+    margin-top: 0!important
+
+.mr-0,
+.mx-0
+    margin-right: 0!important
+
+.mb-0,
+.my-0
+    margin-bottom: 0!important
+
+.ml-0,
+.mx-0
+    margin-left: 0!important
+
+.m-1
+    margin: .25rem!important
+
+.mt-1,
+.my-1
+    margin-top: .25rem!important
+
+.mr-1,
+.mx-1
+    margin-right: .25rem!important
+
+.mb-1,
+.my-1
+    margin-bottom: .25rem!important
+
+.ml-1,
+.mx-1
+    margin-left: .25rem!important
+
+.m-2
+    margin: .5rem!important
+
+.mt-2,
+.my-2
+    margin-top: .5rem!important
+
+.mr-2,
+.mx-2
+    margin-right: .5rem!important
+
+.mb-2,
+.my-2
+    margin-bottom: .5rem!important
+
+.ml-2,
+.mx-2
+    margin-left: .5rem!important
+
+.m-3
+    margin: 1rem!important
+
+.mt-3,
+.my-3
+    margin-top: 1rem!important
+
+.mr-3,
+.mx-3
+    margin-right: 1rem!important
+
+.mb-3,
+.my-3
+    margin-bottom: 1rem!important
+
+.ml-3,
+.mx-3
+    margin-left: 1rem!important
+
+.m-4
+    margin: 1.5rem!important
+
+.mt-4,
+.my-4
+    margin-top: 1.5rem!important
+
+.mr-4,
+.mx-4
+    margin-right: 1.5rem!important
+
+.mb-4,
+.my-4
+    margin-bottom: 1.5rem!important
+
+.ml-4,
+.mx-4
+    margin-left: 1.5rem!important
+
+.m-5
+    margin: 3rem!important
+
+.mt-5,
+.my-5
+    margin-top: 3rem!important
+
+.mr-5,
+.mx-5
+    margin-right: 3rem!important
+
+.mb-5,
+.my-5
+    margin-bottom: 3rem!important
+
+.ml-5,
+.mx-5
+    margin-left: 3rem!important
+
+.p-0
+    padding: 0!important
+
+.pt-0,
+.py-0
+    padding-top: 0!important
+
+.pr-0,
+.px-0
+    padding-right: 0!important
+
+.pb-0,
+.py-0
+    padding-bottom: 0!important
+
+.pl-0,
+.px-0
+    padding-left: 0!important
+
+.p-1
+    padding: .25rem!important
+
+.pt-1,
+.py-1
+    padding-top: .25rem!important
+
+.pr-1,
+.px-1
+    padding-right: .25rem!important
+
+.pb-1,
+.py-1
+    padding-bottom: .25rem!important
+
+.pl-1,
+.px-1
+    padding-left: .25rem!important
+
+.p-2
+    padding: .5rem!important
+
+.pt-2,
+.py-2
+    padding-top: .5rem!important
+
+.pr-2,
+.px-2
+    padding-right: .5rem!important
+
+.pb-2,
+.py-2
+    padding-bottom: .5rem!important
+
+.pl-2,
+.px-2
+    padding-left: .5rem!important
+
+.p-3
+    padding: 1rem!important
+
+.pt-3,
+.py-3
+    padding-top: 1rem!important
+
+.pr-3,
+.px-3
+    padding-right: 1rem!important
+
+.pb-3,
+.py-3
+    padding-bottom: 1rem!important
+
+.pl-3,
+.px-3
+    padding-left: 1rem!important
+
+.p-4
+    padding: 1.5rem!important
+
+.pt-4,
+.py-4
+    padding-top: 1.5rem!important
+
+.pr-4,
+.px-4
+    padding-right: 1.5rem!important
+
+.pb-4,
+.py-4
+    padding-bottom: 1.5rem!important
+
+.pl-4,
+.px-4
+    padding-left: 1.5rem!important
+
+.p-5
+    padding: 3rem!important
+
+.pt-5,
+.py-5
+    padding-top: 3rem!important
+
+.pr-5,
+.px-5
+    padding-right: 3rem!important
+
+.pb-5,
+.py-5
+    padding-bottom: 3rem!important
+
+.pl-5,
+.px-5
+    padding-left: 3rem!important
