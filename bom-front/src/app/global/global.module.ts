@@ -5,10 +5,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { TemoignageComponent } from './temoignage/temoignage.component';
+import { FicheComponent } from './fiche/fiche.component';
 
 @NgModule({
   imports: [CommonModule, FlexLayoutModule, MatCardModule],
-  declarations: [CarouselComponent, ProductCardComponent, TemoignageComponent],
-  exports: [CarouselComponent, ProductCardComponent, TemoignageComponent],
+  declarations: [CarouselComponent, ProductCardComponent, TemoignageComponent, FicheComponent],
+  exports: [CarouselComponent, ProductCardComponent, TemoignageComponent, FicheComponent],
 })
 export class GlobalModule {}

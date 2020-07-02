@@ -1,0 +1,6 @@
+export interface UserInterface {
+  name: string;
+  url: string;
+  team: string;
+  contact?: string;
+}

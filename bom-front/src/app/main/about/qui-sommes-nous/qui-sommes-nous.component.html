@@ -1,1 +1,6 @@
-<p>qui-sommes-nous works!</p>
+<div fxLayout="row" class="content list-flex">
+    
+    <div class="card-member" *ngFor="let member of team">
+        <app-fiche [person]="member"></app-fiche>
+    </div>
+</div>
