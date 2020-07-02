@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { GlobalModule } from 'src/app/global/global.module';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes = [
   {
@@ -23,7 +24,8 @@ const routes = [
     FlexLayoutModule,
     GlobalModule,
     SlickCarouselModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
   ],
 })
 export class HomeModule {}

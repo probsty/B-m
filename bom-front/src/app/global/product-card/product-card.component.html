@@ -1,9 +1,9 @@
-<p>product-card works!</p>
-
 <mat-card class="example-card" *ngIf="product">
-    <!-- <a class="p-link" [routerLink]="['/products', product?.name, product?.id]">
-      <img class="image-style" width="626" height="800" mat-card-image [src]="product?.image" alt="Photo">
-    </a> -->
+    <mat-card-title>{{product?.name}}</mat-card-title>
+    <!-- [routerLink]="['/products', product?.name, product?.id]" -->
+    <!-- <a class="p-link"> -->
+        <img class="image-style" width="626" height="400" mat-card-image [src]="product?.cover" alt="Photo">
+    <!-- </a> -->
     <!-- <div class="wishlist-icon {{index}}-wishlist">
        <a (click)="productAddToWishlist(product, index+'-wishlist')"><i  class="material-icons"> favorite </i></a>
     </div> -->

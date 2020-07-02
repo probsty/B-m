@@ -61,9 +61,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._productService.getAll().subscribe(
-      (products) => {
-        this.productData = products;
-        console.log('products', products);
+      (products: any) => {
+        this.productData = products.map((element) => {
+          let cover = null;
+          if (element.images) {
+            cover = element.images[0];
+          }
+          return {
+            ...element,
+            cover,
+          };
+        });
+        console.log('products', this.productData);
       },
       (err) => {
         console.log('Error while fetching products', err);

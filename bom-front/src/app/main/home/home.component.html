@@ -12,7 +12,14 @@
     <div>test</div>
     <app-carousel></app-carousel>
 
-    <div class="container">
+    <div class="product-section">
+        <div class="block-title text-center">
+            <h2>Nos produits</h2>
+            <p class="text-presentation">Bôm est un ensemble d’outils repensés du quotidien à visées thérapeutiques. Les
+                différents objets de ce dispositif sont là pour vous permettre de vous confier, vous réapproprier votre
+                corps ou encore vous apporter un sentiment de sécurité. Mais le plus important est que vous alliez à
+                votre rythme. Bôm est là pour vous accompagner à tous les stades de la maladie.</p>
+        </div>
         <ng-container>
             <ngx-slick-carousel class="carousel" [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let product of productData; let i=index">
