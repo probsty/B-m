@@ -83,6 +83,13 @@ $rating-unselected-color:#d2d2d2
 
 $card-shadow:0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12)
 
+body .img-zoom-container
+    position: relative !important
+
+@media(max-width:959px)
+    #myresult
+        display: none
+
 //Page Title
 .page-title-bar
     padding: 7rem 0
@@ -108,7 +115,8 @@ $card-shadow:0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0
 *, ::after, ::before
     box-sizing: border-box
 
-// Basics tags 
+// // Basics tags 
+
 code
     padding: 8px
     background: $body-bg
@@ -159,25 +167,25 @@ img
         padding-left: 1rem
         padding-right: 1rem
 
-@media (min-width:576px)
-.container
-    width: 540px
+// @media (min-width:576px)
+// .container
+//     width: 540px
 
-@media (min-width:768px)
-.container
-    width: 720px
+// @media (min-width:768px)
+// .container
+//     width: 720px
 
-@media (min-width:992px)
-.container
-    width: 960px
+// @media (min-width:992px)
+// .container
+//     width: 960px
 
-@media (min-width:1200px)
-.container
-    width: 1140px
+// @media (min-width:1200px)
+// .container
+//     width: 1140px
 
-@media (min-width:1520px)
-.container
-    width: 1450px
+// @media (min-width:1520px)
+// .container
+//     width: 1450px
 
 //Row and col fix 
 //If you dont wanna use this then You can use fxFlexGap to give margin to the column 
