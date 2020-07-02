@@ -10,6 +10,7 @@ import { ProduitService } from 'src/app/services/produit/produit.service';
 export class ProduitComponent implements OnInit {
   id: any;
   product: any;
+  image: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,9 @@ export class ProduitComponent implements OnInit {
       this._produitService.getProduct(this.id).subscribe(
         (product) => {
           this.product = product;
+          if (this.product.images) {
+            this.image = this.product.images[0];
+          }
         },
         (err) => {
           console.log('An error occured while fetching product', err);

@@ -8,10 +8,11 @@ import { FicheComponent } from './fiche/fiche.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { PageTitleComponent } from './page-title/page-title.component';
+import { ImgZoomComponent } from './ImgZoom/img-zoom.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, FlexLayoutModule, MatCardModule, MatButtonModule],
-  declarations: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent],
-  exports: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent],
+  declarations: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent, ImgZoomComponent],
+  exports: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent, ImgZoomComponent],
 })
 export class GlobalModule {}
