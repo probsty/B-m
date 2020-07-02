@@ -7,10 +7,11 @@ import { TemoignageComponent } from './temoignage/temoignage.component';
 import { FicheComponent } from './fiche/fiche.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { PageTitleComponent } from './page-title/page-title.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, FlexLayoutModule, MatCardModule, MatButtonModule],
-  declarations: [ProductCardComponent, TemoignageComponent, FicheComponent],
-  exports: [ProductCardComponent, TemoignageComponent, FicheComponent],
+  declarations: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent],
+  exports: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent],
 })
 export class GlobalModule {}
