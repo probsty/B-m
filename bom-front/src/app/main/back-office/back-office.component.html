@@ -3,7 +3,7 @@
         <mat-card-title>Utilisateurs</mat-card-title>
 
         <div fxLayout="row">
-            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsUserData" [columnMode]="'force'"
+            <ngx-datatable fxFlex="70" class="material fullscreen" [rows]="rowsUserData" [columnMode]="'force'"
                 (select)="selectUser($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
                 [rowHeight]="70" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
                 [messages]="{emptyMessage: 'Aucun utilisateurs'}">
@@ -69,7 +69,7 @@
 
             </ngx-datatable>
 
-            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
                 <h1>{{isEditUser ? 'Modifier un utilisateur' : 'Créer un nouvel utilisateur'}}</h1>
                 <mat-card-content>
                     <form fxLayout="column" name="userForm" [formGroup]="userForm" novalidate
@@ -106,7 +106,7 @@
         <mat-card-title>Témoignages</mat-card-title>
 
         <div fxLayout="row" class="content">
-            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsTemoignageData" [columnMode]="'force'"
+            <ngx-datatable fxFlex="70" class="material fullscreen" [rows]="rowsTemoignageData" [columnMode]="'force'"
                 (select)="selectTemoignage($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
                 [rowHeight]="'auto'" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
                 [messages]="{emptyMessage: 'Aucun utilisateurs'}">
@@ -152,7 +152,7 @@
 
             </ngx-datatable>
 
-            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
                 <h1>{{isEditTemoignage ? 'Modifier un témoignage' : 'Créer un nouveau témoignage'}}</h1>
                 <mat-card-content>
                     <form fxLayout="column" name="temoignageForm" [formGroup]="temoignageForm" novalidate
@@ -187,7 +187,7 @@
         <mat-card-title>Produits</mat-card-title>
 
         <div fxLayout="row" class="content">
-            <ngx-datatable fxFlex="60" class="material fullscreen" [rows]="rowsProductData" [columnMode]="'force'"
+            <ngx-datatable fxFlex="70" class="material fullscreen" [rows]="rowsProductData" [columnMode]="'force'"
                 (select)="selectProduct($event)" [headerHeight]="80" [footerHeight]="0" [selectionType]="'single'"
                 [rowHeight]="'auto'" [sorts]="[{prop: 'nom', dir: 'asc'}]" [scrollbarH]="true"
                 [messages]="{emptyMessage: 'Aucun utilisateurs'}">
@@ -261,7 +261,7 @@
 
             </ngx-datatable>
 
-            <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
                 <h1>{{isEditProduct ? 'Modifier un produit' : 'Créer un nouveau produit'}}</h1>
                 <mat-card-content>
 

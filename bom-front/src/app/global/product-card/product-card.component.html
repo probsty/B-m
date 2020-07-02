@@ -1,20 +1,20 @@
 <mat-card class="example-card" *ngIf="product">
     <mat-card-title>{{product?.name}}</mat-card-title>
-    <!-- [routerLink]="['/products', product?.name, product?.id]" -->
-    <!-- <a class="p-link"> -->
-        <img class="image-style" width="626" height="400" mat-card-image [src]="product?.cover" alt="Photo">
-    <!-- </a> -->
+
     <!-- <div class="wishlist-icon {{index}}-wishlist">
-       <a (click)="productAddToWishlist(product, index+'-wishlist')"><i  class="material-icons"> favorite </i></a>
+        <a (click)="productAddToWishlist(product, index+'-wishlist')"><i  class="material-icons"> favorite </i></a>
     </div> -->
     <mat-card-content class="product-content relative">
+        <!-- <a class="p-link" [routerLink]="['/produit', product?.id]"> -->
+        <img class="image-style" width="626" height="400" mat-card-image [src]="product?.cover" alt="Photo">
+        <!-- </a> -->
         <h5><a class="title-link">{{product?.name}}</a> </h5>
         <!-- <h5><a [routerLink]="['/products', product?.type, product?.id]" class="title-link">{{product?.name}}</a> </h5> -->
         <div>
             <div fxFlex fxLayoutAlign="space-between">
                 <h6 class="accent-color">{{product?.price | currency: currency}}</h6>
                 <!-- <div class="rating-star">
-               <embryo-Rating [rate]="product.rating"></embryo-Rating>
+                <embryo-Rating [rate]="product.rating"></embryo-Rating>
             </div> -->
             </div>
         </div>
@@ -24,7 +24,11 @@
 
         <!-- *ngIf="!checkCartAlready(product)" -->
         <div class="m-icon">
-            <button mat-fab><i class="material-icons"> remove_red_eye </i></button>
+            <!-- <button mat-fab >
+                <i class="material-icons"> remove_red_eye </i>
+            </button> -->
+            <button mat-fab [routerLink]="['/produit', product?.id]"><i class="material-icons">
+                    remove_red_eye </i></button>
             <!-- <button mat-fab [routerLink]="['/products', product?.type, product?.id]"><i  class="material-icons"> remove_red_eye </i></button> -->
         </div>
     </mat-card-content>

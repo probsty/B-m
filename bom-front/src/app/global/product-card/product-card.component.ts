@@ -18,7 +18,5 @@ export class ProductCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('Product = ', this.product);
-  }
+  ngOnInit(): void {}
 }
