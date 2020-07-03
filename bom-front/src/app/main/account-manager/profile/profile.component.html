@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<mat-card>
+    <img class="logo-img" src="../../../../assets/img/logo70px.png" alt="bom">
+    <mat-card-title>Modifier votre profil</mat-card-title>
+    <mat-card-content>
+        <form name="userForm" [formGroup]="userForm" novalidate (ngSubmit)="onRegister()">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom utilisateur...</mat-label>
+                <input class="test" matInput type="text" formControlName="username" required minlength="6">
+                <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
+                    Le username est invalide.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Adresse e-mail...</mat-label>
+                <input class="test" matInput type="email" formControlName="email" required email="true">
+                <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                    L'adresse e-mail est invalide.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Mot de passe...</mat-label>
+                <input matInput type="text" formControlName="password" required minlength="6">
+                <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Le mot de passe est trop court.
+                </mat-error>
+                <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button class="submit-button" color="primary"
+                    style="white-space: pre-wrap !important;">
+                    Modifier mon profil
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>
