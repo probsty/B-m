@@ -34,55 +34,26 @@
                         </div>
                     </div>
 
-                    <!-- <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=50 fxFlex.lg="50" fxFlex.xl="50">
-                        <div fxLayout='row wrap'>
-                            <div fxFlex.xs="15" fxFlex.sm="15" fxFlex.md="15" fxFlex.lg="15" fxFlex.xl="15">
-                                <div class="product-detail-image-gallery pr-4">
-                                    <mat-grid-list cols="1" rowHeight="1:1" gutterSize="20px">
-                                        <mat-grid-tile *ngFor="let img of product?.images; let i=index">
-                                            <div class="product-image-gallery-item">
-                                                <a id="{{i}}_img" class="p-link"
-                                                    [ngClass]="{ 'border-active': i === 0 }"
-                                                    href="javascript:void(0)"></a>
-                                                <img [src]="image" alt="dsd">
-                                            </div>
-                                        </mat-grid-tile>
-                                    </mat-grid-list>
-                                </div>
-                            </div>
-                            <div fxFlex.xs="85" fxFlex.sm="85" fxFlex.md="85" fxFlex.lg="85" fxFlex.xl="85"
-                                class="relative" *ngIf="image">
-                                <app-img-zoom [imgSrc]="image" imgStyle="width:auto; height:auto;"
-                                    resultStyle="background-repeat: no-repeat; z-index: 2; position:absolute;
-                                                   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                                                    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;" lensStyle="width:100px; height:100px"
-                                    containerStyle="">
-                                </app-img-zoom>
-                            </div>
-                        </div>
-                    </div> -->
                     <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=50 fxFlex.lg="50" fxFlex.xl="50">
                         <div class="product-detail-content">
                             <a href="javascript:void(0)" [routerLink]="['/']">Retour à la boutique</a>
 
-                            <!-- {{product?.name}} -->
-
-                            <h3>detail data</h3>
                             <div class="product-detail-price">
-
-                                <!-- {{totalPrice | currency:currency}} -->
 
                                 <h4 class="accent-color"> </h4>
                             </div>
                             <ul class="no-style mb-4">
                                 <li>
                                     <span class="font-medium"> Disponibilité </span>:
-                                    <span *ngIf="product?.amount > 0">En stock</span>
+                                    <span *ngIf="product?.amount > 0">En stock (<b>{{product?.amount }}
+                                            pièces</b>)</span>
                                     <span *ngIf="product?.amount == 0">Rupture de stock</span>
+                                </li>
+                                <li>
+                                    Prix: {{product?.price}} €
                                 </li>
                             </ul>
                             <div class="short-des">
-
                                 <p>{{product?.description}}</p>
 
                             </div>
@@ -95,16 +66,15 @@
                             </div>
 
                             <div class="mb-4">
-                                Ajoute au favoris
 
                             </div>
                             <div class="mb-5 detail-btns">
-                                <!-- (click)="addToCart(product)" -->
-                                <button mat-raised-button color="accent" class="button-lg mr-3">Ajouter au
-                                    panier</button>
-                                <!-- (click)="buyNow(product)" -->
-                                <button class="button-lg" mat-raised-button>Acheter
-                                    maintenant</button>
+                                <a class="no-link" href="mailto:ateliersensible@gmail.com?subject=[COMMANDE] - {{product.name}}">
+                                    <button mat-raised-button color="accent" class="button-lg mr-3">
+                                        Prendre commande
+                                    </button>
+                                </a>
+
                             </div>
                         </div>
                     </div>
