@@ -46,6 +46,12 @@ export class UsersService {
     });
   }
 
+  editCurrentUser({ ...user }): Observable<any> {
+    return this._http.put<any>(`/users/me`, {
+      ...user,
+    });
+  }
+
   editUser({ id, ...user }): Observable<any> {
     return this._http.put<any>(`/users/${id}`, {
       ...user,
