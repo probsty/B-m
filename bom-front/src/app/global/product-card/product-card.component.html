@@ -1,13 +1,11 @@
 <mat-card class="example-card" *ngIf="product">
     <mat-card-title>{{product?.name}}</mat-card-title>
 
-    <img mat-card-image width="626" height="400" [src]="product?.cover" alt="Photo">
+    <img class="image-style" mat-card-image width="626" height="400" [src]="product?.cover" alt="Photo">
 
     <mat-card-content class="product-content relative">
-        <div>
-            <div fxFlex fxLayoutAlign="space-between">
-                <h6 class="accent-color">{{product?.price | currency: currency}}</h6>
-            </div>
+        <div fxFlex fxLayoutAlign="space-between">
+            <h5 class="accent-color">{{product?.price | currency: currency}}</h5>
         </div>
 
         <div class="m-icon">

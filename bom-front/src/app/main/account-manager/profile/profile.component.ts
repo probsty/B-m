@@ -70,14 +70,15 @@ export class ProfileComponent implements OnInit {
     if (this.userForm.get('password').value) {
       data['password'] = this.userForm.get('password').value;
     }
-    this._userService.editCurrentUser(data).subscribe(
-      () => {
-        this.refreshData();
-      },
-      (err) => {
-        console.log('An error occured while editing user information', err);
-      }
-    );
+    console.log(data);
+    // this._userService.editCurrentUser(data).subscribe(
+    //   () => {
+    //     this.refreshData();
+    //   },
+    //   (err) => {
+    //     console.log('An error occured while editing user information', err);
+    //   }
+    // );
   }
 
   /*

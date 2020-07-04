@@ -4,10 +4,12 @@
         <!-- <mat-card-content> -->
         <img mat-card-image [src]="person.url" alt="person name">
         <!-- </mat-card-content> -->
-        <mat-card-subtitle>{{person.team}}</mat-card-subtitle>
-        <!-- <mat-card-footer> -->
-        <div *ngIf="person.contact">
-            <a [href]="person.contact">contact</a>
+        <div class="contact-section">
+            <mat-card-subtitle>{{person.team}}</mat-card-subtitle>
+            <!-- <mat-card-footer> -->
+            <div *ngIf="person.contact">
+                <a [href]="person.contact">contact</a>
+            </div>
         </div>
         <!-- </mat-card-footer> -->
     </mat-card>
