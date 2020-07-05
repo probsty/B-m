@@ -65,7 +65,7 @@ import { QuillModule } from 'ngx-quill';
         providers: [
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId'),
+            provider: new FacebookLoginProvider('321784068822701'),
           },
           {
             id: GoogleLoginProvider.PROVIDER_ID,
