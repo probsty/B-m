@@ -21,10 +21,8 @@ export class TemoignageComponent implements OnInit {
    * Get the temoignages from the api and save the content
    */
   private refreshDataTable(): void {
-    console.log("Je fais refreshDataTable")
     this._temoignageService.getAll().subscribe(
       (posts: any) => {
-        console.log(posts);
         this.rowsTemoignageData = posts.filter((post: any) => {
           return post.tags.includes('temoignage');
         });

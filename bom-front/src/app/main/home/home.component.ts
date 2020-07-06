@@ -72,7 +72,6 @@ export class HomeComponent implements OnInit {
             cover,
           };
         });
-        console.log('products', this.productData);
       },
       (err) => {
         console.log('Error while fetching products', err);

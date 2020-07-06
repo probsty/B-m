@@ -72,7 +72,6 @@ export class BackOfficeComponent implements OnInit {
       (posts: any) => {
         this.rowsTemoignageData = posts.filter((post: any) => {
           if (post.tags.includes('temoignage')) {
-            console.log(post);
             return true;
           }
           return false;
@@ -86,7 +85,6 @@ export class BackOfficeComponent implements OnInit {
     this._productService.getAll().subscribe(
       (products) => {
         this.rowsProductData = products;
-        console.log('products', products);
       },
       (err) => {
         console.log('Error while fetching products', err);
@@ -342,7 +340,6 @@ export class BackOfficeComponent implements OnInit {
   selectProduct(event: any): void {
     this.isEditProduct = true;
     this.selectedProduct = event.selected[0];
-    console.log(this.selectedProduct);
     this.productForm.patchValue({
       name: this.selectedProduct.name,
       amount: this.selectedProduct.amount,
@@ -422,7 +419,6 @@ export class BackOfficeComponent implements OnInit {
         var reader = new FileReader();
 
         reader.onload = (event: any) => {
-          console.log(event.target.result);
           this.images.push(event.target.result);
 
           this.productForm.patchValue({

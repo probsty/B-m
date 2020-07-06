@@ -31,7 +31,6 @@ export class ContactComponent implements OnInit {
   * Submit the forms
    */
   onSubmit(): void {
-    console.log('On submit');
   }
 
   /*

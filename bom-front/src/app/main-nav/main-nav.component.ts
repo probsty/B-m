@@ -29,9 +29,7 @@ export class MainNavComponent {
     this.isConnected = !!localStorage.getItem('token');
 
     this._authService.isConnected.pipe().subscribe((isCon) => {
-      console.log('isConnected', isCon);
       if (isCon === true || isCon === false) {
-        console.log('isConnected there', isCon);
         this.isAdmin = localStorage.getItem('admin') === 'true' ? true : false;
         this.isConnected = isCon;
       }
