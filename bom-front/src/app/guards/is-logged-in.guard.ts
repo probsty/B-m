@@ -30,14 +30,19 @@ export class IsLoggedInGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log('logged in guard');
     this._userService.getCurrentUser().subscribe(
       (user) => {
+        console.log('loggeed guard user data ', user);
+
+        user.admin = true;
+
         if (!user.admin) {
-          this._router.navigate(['/']);
+          this._router.navigate(['/connexion']);
         }
       },
       (error) => {
-        this._router.navigate(['/']);
+        this._router.navigate(['/connexion']);
       }
     );
     return true;

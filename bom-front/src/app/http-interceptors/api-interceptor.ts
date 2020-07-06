@@ -84,7 +84,7 @@ export class ApiInterceptor implements HttpInterceptor {
               localStorage.removeItem('admin');
             }
             if (err.status === 401) {
-              this._router.navigate(['/']);
+              this._router.navigate(['/connexion']);
             }
           }
           return of(err);

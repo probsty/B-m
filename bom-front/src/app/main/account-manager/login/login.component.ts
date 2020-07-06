@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (user) => {
+            this._authService.isConnected.next(true);
           if (user) {
             this._router.navigate(['/']);
 

@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _userService: UsersService,
+    private _authService: AuthService,
     private _formBuilder: FormBuilder
   ) {}
 
@@ -115,4 +116,9 @@ export class ProfileComponent implements OnInit {
   //   get confirmPassword() {
   //     return this.userForm.get('confirmPassword');
   //   }
+
+  disconnect(): void {
+    this._authService.disconnect();
+    this._authService.isConnected.next(false);
+  }
 }

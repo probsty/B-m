@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
         });
         this.dialog.afterClosed().subscribe((isSend) => {
           if (isSend) {
+            this._authService.isConnected.next(true);
             this._router.navigate(['/']);
           }
         })

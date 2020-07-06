@@ -51,6 +51,7 @@ export class AuthGoogleComponent implements OnInit {
       .subscribe(
         (user) => {
           if (user) {
+            this._authService.isConnected.next(true);
             this._router.navigate(['/']);
           } else {
             console.error('An error occured while connecting to server');

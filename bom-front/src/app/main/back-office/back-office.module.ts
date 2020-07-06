@@ -15,10 +15,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { IsLoggedInGuard } from 'src/app/guards/is-logged-in.guard';
 
 const routes = [
   {
     path: 'back-office',
+    canActivate: [IsLoggedInGuard],
     component: BackOfficeComponent,
   },
 ];
