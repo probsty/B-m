@@ -32,7 +32,7 @@ export class IsLoggedInGuard implements CanActivate {
     | UrlTree {
     this._userService.getCurrentUser().subscribe(
       (user) => {
-        if (!user.id) {
+        if (!user.admin) {
           this._router.navigate(['/']);
         }
       },
