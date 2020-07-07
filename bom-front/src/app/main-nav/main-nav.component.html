@@ -3,12 +3,25 @@
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item *ngIf="isConnected" [routerLink]="['/journal']">JOURNAL</a>
-            <a mat-list-item *ngIf="isConnected" [routerLink]="['/profile']">PROFILE</a>
-            <a mat-list-item [routerLink]="['/temoignage']">TEMOIGNAGE</a>
-            <a mat-list-item [routerLink]="['/qui-sommes-nous']">QUI SOMMES NOUS</a>
-            <a mat-list-item *ngIf="isAdmin" [routerLink]="['/back-office']">ADMINISTRATEUR</a>
-            <a mat-list-item [routerLink]="['/contact']">CONTACT</a>
+            <app-toolbar-item *ngIf="!isConnected" [routerLink]="['/connexion']" [title]="'SE CONNECTER'"
+                [description]="">
+            </app-toolbar-item>
+            <app-toolbar-item *ngIf="!isConnected" [routerLink]="['/inscription']" [title]="'S\'INSCRIRE'"
+                [description]="">
+            </app-toolbar-item>
+            <app-toolbar-item *ngIf="isConnected" [routerLink]="['/profile']" [title]="'PROFILE'" [description]="">
+            </app-toolbar-item>
+            <app-toolbar-item *ngIf="isConnected" [routerLink]="['/journal']" [title]="'JOURNAL'" [description]="">
+            </app-toolbar-item>
+            <app-toolbar-item [routerLink]="['/qui-sommes-nous']" [title]="'À PROPOS'" [description]="'Notre équipe'">
+            </app-toolbar-item>
+            <app-toolbar-item [routerLink]="['/contact']" [title]="'CONTACT'" [description]="'Nous contacter'">
+            </app-toolbar-item>
+            <app-toolbar-item [routerLink]="['/temoignage']" [title]="'TEMOIGNAGE'" [description]="''">
+            </app-toolbar-item>
+            <app-toolbar-item *ngIf="isAdmin" [routerLink]="['/back-office']" [title]="'ADMINISTRATEUR'"
+                [description]="''">
+            </app-toolbar-item>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

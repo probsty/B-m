@@ -9,10 +9,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { ImgZoomComponent } from './ImgZoom/img-zoom.component';
+import { ToolbarItemComponent } from './toolbar-item/toolbar-item.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FlexLayoutModule, MatCardModule, MatButtonModule],
-  declarations: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent, ImgZoomComponent],
-  exports: [ProductCardComponent, TemoignageComponent, FicheComponent, PageTitleComponent, ImgZoomComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
+  declarations: [
+    ProductCardComponent,
+    TemoignageComponent,
+    FicheComponent,
+    PageTitleComponent,
+    ImgZoomComponent,
+    ToolbarItemComponent,
+  ],
+  exports: [
+    ProductCardComponent,
+    TemoignageComponent,
+    FicheComponent,
+    PageTitleComponent,
+    ImgZoomComponent,
+    ToolbarItemComponent,
+  ],
 })
 export class GlobalModule {}
