@@ -103,14 +103,13 @@ export class ImgZoomComponent implements OnInit {
   }
 
   moveLens(e) {
-    let pos, x, y;
     /*prevent any other actions that may occur when moving over the image:*/
     e.preventDefault();
     /*get the cursor's x and y positions:*/
-    pos = this.getCursorPos(e);
+    const pos = this.getCursorPos(e);
     /*calculate the position of the lens:*/
-    x = pos.x - this.lens.offsetWidth / 2;
-    y = pos.y - this.lens.offsetHeight / 2;
+    let x = pos.x - this.lens.offsetWidth / 2;
+    let y = pos.y - this.lens.offsetHeight / 2;
 
     /*prevent the lens from being positioned outside the image:*/
     if (x > this.img.width - this.lens.offsetWidth) {
@@ -153,18 +152,17 @@ export class ImgZoomComponent implements OnInit {
   }
 
   getCursorPos(e) {
-    let a,
-      x = 0,
-      y = 0;
+    let x = 0;
+    let y = 0;
     e = e || window.event;
     /*get the x and y positions of the image:*/
-    a = this.img.getBoundingClientRect();
+    const a = this.img.getBoundingClientRect();
     /*calculate the cursor's x and y coordinates, relative to the image:*/
     x = e.pageX - a.left;
     y = e.pageY - a.top;
     /*consider any page scrolling:*/
     x = x - window.pageXOffset;
     y = y - window.pageYOffset;
-    return { x: x, y: y };
+    return { x, y };
   }
 }
