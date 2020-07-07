@@ -10,7 +10,6 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./main-nav.component.css'],
 })
 export class MainNavComponent {
-  private _unsubscribeAll: Subject<any>;
   isConnected = false;
   isAdmin = false;
 
