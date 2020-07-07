@@ -19,10 +19,16 @@ export class ProfileComponent implements OnInit {
   user: any;
 
   constructor(
+    private _router: Router,
     private _userService: UsersService,
     private _authService: AuthService,
     private _formBuilder: FormBuilder
-  ) {}
+  ) {
+    const isConnected = !!localStorage.getItem('token');
+    if (!isConnected) {
+        this._router.navigate(['/connexion']);
+    }
+  }
 
   /*
    * Initiation of the component
