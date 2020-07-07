@@ -30,7 +30,7 @@
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <span>Bôm</span>
+            <span [routerLink]="['/']">Bôm</span>
             <span class="top-bar-spacer"></span>
             <mat-icon class="top-bar-icon" [routerLink]="['/profile']" aria-hidden="false" aria-label="Account">
                 account_circle</mat-icon>
