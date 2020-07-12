@@ -1,1 +1,40 @@
-<p>journal works!</p>
+<div class="journal-preview">
+  <button class="corner-button" mat-button [matMenuTriggerFor]="menu">Mes journées précedente</button>
+</div>
+<mat-menu #menu="matMenu">
+  <li (click)="getSpecificPost(posts)" *ngFor="let posts of postsArray">
+    <button mat-menu-item>{{ posts.title }}</button>
+  </li>
+</mat-menu>
+<div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=100 fxFlex.lg="30" fxFlex.xl="30" fxLayout="column"
+     fxLayoutAlign="center center">
+  <h1 class="margin-left">Racontez-nous votre journée</h1>
+  <mat-card-content>
+    <form fxLayout="column" name="temoignageForm" [formGroup]="m_contactForm" novalidate
+          (ngSubmit)="onSubmit()">
+
+      <div class="margin-left">
+        <mat-form-field appearance="outline">
+          <mat-label>Titre</mat-label>
+          <input matInput type="text" formControlName="title">
+          <!-- <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon> -->
+        </mat-form-field>
+      </div>
+
+      <div class="quill">
+        <quill-editor formControlName="message"></quill-editor>
+      </div>
+
+      <div class="right">
+        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+          <button type="submit" mat-raised-button class="submit-button" color="primary"
+                  style="white-space: pre-wrap !important;">
+            Ajouter
+          </button>
+
+        </mat-card-actions>
+      </div>
+
+    </form>
+  </mat-card-content>
+</div>
