@@ -3,4 +3,5 @@ export interface UserInterface {
   url: string;
   team: string;
   contact?: string;
+  description?: string;
 }

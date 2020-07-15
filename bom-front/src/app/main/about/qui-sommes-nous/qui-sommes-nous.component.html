@@ -1,6 +1,33 @@
-<div fxLayout="row" class="content list-flex">
-    
-    <div class="card-member" *ngFor="let member of team">
-        <app-fiche [person]="member"></app-fiche>
+<div fxLayout="column">
+    <h1 class="title">L’Atelier Sensible - éclaireurs du mieux-être</h1>
+
+    <div class="description">
+        Nous sommes une équipe pluridisciplinaire active dans les aux milieux du “care”, c’est à dire des soins, des
+        thérapies.
+    </div>
+
+    <div class="description">
+        Notre démarche repose sur un processus de conception participatif qui inclut le plus possible l’écosystème du
+        patient et de la problématique identifiée. consiste à chercher les réponses auprès des personnes concernées.
+        C’est pourquoi notre philosophie repose sur la rencontre, la collecte d’informations pour apporter la réponse la
+        plus adaptée possible. C’est un processus participatif et inclusif.
+
+    </div>
+
+    <div class="description">
+        Notre équipe est née à l’occasion d’un concours d’entrepreneuriat autour d’un projet et de passions communes.
+        Nous nous sommes regroupés autour du travail de Meriem, qui établit depuis plusieurs années des recherches sur
+        le thème de l’alimentation.
+        A la suite de ce concours, nous avons souhaité continuer ensemble. Aujourd’hui, nous souhaitons nous lancer en
+        tant qu’entreprise accompagnante auprès du monde médical et social. Notre vision implique l’exploration de
+        terrains et espaces inconnus
+        ou inhabituels dans le processus thérapeutique du patient.
+
+    </div>
+
+    <div fxLayout="row" class="content list-flex">
+        <div class="card-member" *ngFor="let member of team">
+            <app-fiche [person]="member"></app-fiche>
+        </div>
     </div>
 </div>
