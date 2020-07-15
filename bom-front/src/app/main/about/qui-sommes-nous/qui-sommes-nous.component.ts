@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInterface } from 'src/app/Interface/UserInterface';
-import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-qui-sommes-nous',
@@ -8,7 +7,6 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./qui-sommes-nous.component.sass'],
 })
 export class QuiSommesNousComponent implements OnInit {
-  //   team: any;
   team: UserInterface[];
 
   constructor() {}
@@ -62,7 +60,7 @@ export class QuiSommesNousComponent implements OnInit {
         contact: 'https://google.fr',
       },
       {
-        name: 'Julien',
+        name: 'Julien Delane',
         url: '../../../../assets/team/julien.jpg',
         team: 'Tech',
         contact: 'https://google.fr',
