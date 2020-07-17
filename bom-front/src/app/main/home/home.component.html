@@ -11,20 +11,18 @@
     </div>
 
     <div class="detail-banner text-center">
-        <h2>JE M'INFORME</h2>
         <div class="video-position">
             <iframe src="https://www.youtube.com/embed/XkHlBAMUOho" width="640" height="360" frameborder="0"
                 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
-        <p class="text-presentation">Présentation de Bôm, outils thérapeutiques pour personnes souffrant d'anorexie,
-            avec l'intervention de Pascal GUINGAND, psychiatre et addictologue, et également président de l'association
+        <p class="text-video">Intervention de Pascal GUINGAND, psychiatre et addictologue, et également président de l'association
             ARTTA (Association Réseau des Thérapies des Troubles Alimentaires).</p>
     </div>
 
     <div class="product-section">
         <div class="block-title text-center">
-            <h2>Nos produits</h2>
-            <p class="text-presentation">Bôm est un ensemble d’outils repensés du quotidien à visées thérapeutiques. Les
+            <p class="text-presentation">
+                Bôm est un ensemble d’outils repensés du quotidien à visées thérapeutiques. Les
                 différents objets de ce dispositif sont là pour vous permettre de vous confier, vous réapproprier votre
                 corps ou encore vous apporter un sentiment de sécurité. Mais le plus important est que vous alliez à
                 votre rythme. Bôm est là pour vous accompagner à tous les stades de la maladie.</p>
@@ -34,24 +32,10 @@
                 <div ngxSlickItem *ngFor="let product of productData; let i=index">
                     <app-product-card [product]="product" [currency]="currency" [index]="i">
                     </app-product-card>
-                    <!-- data {{product.name}} -->
-                    <!-- <embryo-ProductCard [product]="product" (addToCart)="addToCart($event)"
-                        [currency]="embryoService.currency" (addToWishlist)="addToWishlist($event)" [index]="i">
-                    </embryo-ProductCard> -->
                 </div>
             </ngx-slick-carousel>
         </ng-container>
 
-        <!-- <ng-container *ngIf="onNewArrivalsSelectedTab(embryoService.newArrivalSelectedTab)">
-            
-        </ng-container> -->
-        <!-- <ngx-slick-carousel *ngIf="!embryoService.isDirectionRtl" class="carousel" [config]="slideConfig">
-                    <div ngxSlickItem *ngFor="let product of newProductsSliderData; let i=index">
-                        <embryo-ProductCard [product]="product" (addToCart)="addToCart($event)"
-                            [currency]="embryoService.currency" (addToWishlist)="addToWishlist($event)" [index]="i">
-                        </embryo-ProductCard>
-                    </div>
-                </ngx-slick-carousel> -->
     </div>
 
 </div>
