@@ -7,10 +7,10 @@ import { AboutModule } from './about/about.module';
 import { TemoignageModule } from './temoignage/temoignage.module';
 import { BackOfficeModule } from './back-office/back-office.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { JournalSpecificPostComponent } from './journal-specific-post/journal-specific-post.component';
+import { JournalSpecificPostModule } from './journal-specific-post/journal-specific-post.module'
 
 @NgModule({
-  declarations: [JournalSpecificPostComponent],
+  declarations: [],
   imports: [
     // CommonModule,
     FlexLayoutModule,
@@ -20,7 +20,8 @@ import { JournalSpecificPostComponent } from './journal-specific-post/journal-sp
     JournalModule,
     AboutModule,
     TemoignageModule,
-    BackOfficeModule
+    BackOfficeModule,
+    JournalSpecificPostModule
   ]
 })
 export class MainModule { }

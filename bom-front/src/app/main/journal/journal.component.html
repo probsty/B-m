@@ -3,7 +3,7 @@
 </div>
 <mat-menu #menu="matMenu">
   <li (click)="getSpecificPost(posts)" *ngFor="let posts of postsArray">
-    <button mat-menu-item>{{ posts.title }}</button>
+    <button [routerLink]="['/journal', posts?.id]" mat-menu-item>{{ posts.title }} </button>
   </li>
 </mat-menu>
 <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=100 fxFlex.lg="30" fxFlex.xl="30" fxLayout="column"
@@ -22,16 +22,14 @@
       </div>
 
       <div class="quill">
-        <quill-editor formControlName="message"></quill-editor>
+        <quill-editor class="editor" formControlName="message"></quill-editor>
       </div>
 
       <div class="right">
         <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
-          <button type="submit" mat-raised-button class="submit-button" color="primary"
-                  style="white-space: pre-wrap !important;">
+          <button mat-raised-button class="submit-button" color="primary" style="white-space: pre-wrap !important;">
             Ajouter
           </button>
-
         </mat-card-actions>
       </div>
 

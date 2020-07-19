@@ -21,16 +21,19 @@ export class PostsService {
     this.isConnected = new BehaviorSubject({});
   }
 
-  createPost(title: string, content: string, tags: any): Observable<any> {
-    return this._http.post<any>('/posts', {
+  createPost(title: string, content: string): Observable<any> {
+    return this._http.post<any>('/journals', {
       title: title,
-      content: content,
-      tags: tags
+      content: content
     });
   }
 
   getAll(): Observable<any> {
-    return this._http.get<any>(`/posts`);
+    return this._http.get<any>(`/journals`);
+  }
+
+  getPost(postId: string): Observable<any> {
+    return this._http.get<any>(`/journals/${postId}`);
   }
 
 }

@@ -46,8 +46,7 @@ export class JournalComponent implements OnInit {
     this.m_postsService
       .createPost(
         this.title.value,
-        this.message.value,
-        []
+        this.message.value
       )
       .subscribe(
         (user) => {
@@ -77,6 +76,6 @@ export class JournalComponent implements OnInit {
   * Get specific post
    */
   getSpecificPost(post) {
-    console.log(post)
+    console.log(post);
   }
 }
