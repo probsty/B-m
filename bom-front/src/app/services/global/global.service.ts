@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class GlobalService {
-  apiUrl = 'http://localhost:3000/api';
+  apiUrl = 'http://35.180.202.10:3000/api';
   apiKey = 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US';
 
   constructor() {}

@@ -1527,7 +1527,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class GlobalService {
     constructor() {
-        this.apiUrl = 'http://localhost:3000/api';
+        this.apiUrl = 'http://35.180.202.10:3000/api';
         this.apiKey = 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US';
     }
 }

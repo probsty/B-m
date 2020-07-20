@@ -2921,7 +2921,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var GlobalService = function GlobalService() {
       _classCallCheck(this, GlobalService);
 
-      this.apiUrl = 'http://localhost:3000/api';
+      this.apiUrl = 'http://35.180.202.10:3000/api';
       this.apiKey = 'M8uqVtkmHWAV3K2PaSZYLKkHWqeCWd22cxGNPXYnpqeT3US';
     };
 
